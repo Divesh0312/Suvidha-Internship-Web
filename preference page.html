@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preferences Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+    
+    body {
+      background-color: #fffdf5; /* Light yellow background */
+      color: #333;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #ffeba0;
+      background-color: #fff9db; /* Very light yellow header */
+    }
+    
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .menu-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+    }
+    
+    .menu-line {
+      height: 3px;
+      background-color: #e6b800; /* Yellow menu lines */
+      border-radius: 3px;
+    }
+    
+    .menu-line:first-child {
+      width: 100%;
+    }
+    
+    .menu-line:nth-child(2) {
+      width: 70%;
+    }
+    
+    .header-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #8a6e00; /* Dark yellow text */
+    }
+    
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      color: #e6b800; /* Yellow icons */
+    }
+    
+    .icon {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+    }
+    
+    .badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: #ffc107; /* Yellow badge */
+      color: white;
+      font-size: 12px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .content {
+      padding: 15px;
+    }
+    
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #8a6e00; /* Dark yellow heading */
+    }
+    
+    .section {
+      margin-bottom: 25px;
+    }
+    
+    .section-title {
+      font-size: 16px;
+      color: #a08400; /* Medium-dark yellow text */
+      margin-bottom: 15px;
+    }
+    
+    .dropdown-container {
+      position: relative;
+      margin-bottom: 15px;
+    }
+    
+    .search-box {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ffd54f;
+      border-radius: 8px;
+      outline: none;
+      font-size: 16px;
+      color: #999;
+      cursor: pointer;
+      background-color: #fffef7;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23999" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>');
+      background-repeat: no-repeat;
+      background-position: 15px center;
+      padding-left: 45px;
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      background-color: white;
+      border: 1px solid #ffd54f;
+      border-radius: 8px;
+      z-index: 100;
+      box-shadow: 0 4px 8px rgba(255, 204, 0, 0.15);
+      display: none;
+    }
+    
+    .dropdown-menu.active {
+      display: block;
+    }
+    
+    .dropdown-item {
+      padding: 12px 15px;
+      cursor: pointer;
+      border-bottom: 1px solid #fff9e6;
+    }
+    
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+    
+    .dropdown-item:hover {
+      background-color: #fffde7;
+    }
+    
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    
+    .tag {
+      background-color: #ffc107; /* Yellow tag instead of blue */
+      color: #5d4037; /* Dark brown text for better contrast */
+      padding: 10px 15px;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .tag-small {
+      background-color: #fffde7;
+      color: #8a6e00;
+      border: 1px solid #ffd54f;
+      cursor: pointer;
+    }
+    
+    .close-icon {
+      cursor: pointer;
+    }
+    
+    .add-icon {
+      font-size: 16px;
+      color: #ffc107;
+    }
+    
+    .bottom-bar {
+      width: 100%;
+      height: 5px;
+      background-color: #ffd54f;
+      border-radius: 2.5px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <div class="menu-icon">
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+        <div class="menu-line"></div>
+      </div>
+      <span class="header-title">Preferences</span>
+    </div>
+    <div class="header-right">
+      <div class="icon">&#9733;</div>
+      <div class="icon">&#128276;</div>
+      <div class="icon">
+        &#128172;
+        <span class="badge">2</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="content">
+    <h1>Your preferences</h1>
+    
+    <div class="section">
+      <h2 class="section-title">Area(s) of interest</h2>
+      <div class="dropdown-container">
+        <input type="text" class="search-box" placeholder="Areas you want to work in or learn about" readonly onclick="toggleDropdown('careerDropdown')">
+        <div class="dropdown-menu" id="careerDropdown">
+          <div class="dropdown-item" onclick="addInterest('Web Development', 'selectedInterests')">Web Development</div>
+          <div class="dropdown-item" onclick="addInterest('Electronics Engineering', 'selectedInterests')">Electronics Engineering</div>
+          <div class="dropdown-item" onclick="addInterest('Software Development', 'selectedInterests')">Software Development</div>
+          <div class="dropdown-item" onclick="addInterest('Python/Django Development', 'selectedInterests')">Python/Django Development</div>
+          <div class="dropdown-item" onclick="addInterest('UI/UX Design', 'selectedInterests')">UI/UX Design</div>
+          <div class="dropdown-item" onclick="addInterest('Graphic Design', 'selectedInterests')">Graphic Design</div>
+          <div class="dropdown-item" onclick="addInterest('Data Science', 'selectedInterests')">Data Science</div>
+          <div class="dropdown-item" onclick="addInterest('Machine Learning', 'selectedInterests')">Machine Learning</div>
+          <div class="dropdown-item" onclick="addInterest('Mobile App Development', 'selectedInterests')">Mobile App Development</div>
+          <div class="dropdown-item" onclick="addInterest('DevOps', 'selectedInterests')">DevOps</div>
+          <div class="dropdown-item" onclick="addInterest('Cloud Computing', 'selectedInterests')">Cloud Computing</div>
+          <div class="dropdown-item" onclick="addInterest('Network Administration', 'selectedInterests')">Network Administration</div>
+          <div class="dropdown-item" onclick="addInterest('Cybersecurity', 'selectedInterests')">Cybersecurity</div>
+          <div class="dropdown-item" onclick="addInterest('Artificial Intelligence', 'selectedInterests')">Artificial Intelligence</div>
+          <div class="dropdown-item" onclick="addInterest('Blockchain Development', 'selectedInterests')">Blockchain Development</div>
+          <div class="dropdown-item" onclick="addInterest('IoT Development', 'selectedInterests')">IoT Development</div>
+          <div class="dropdown-item" onclick="addInterest('Game Development', 'selectedInterests')">Game Development</div>
+          <div class="dropdown-item" onclick="addInterest('AR/VR Development', 'selectedInterests')">AR/VR Development</div>
+          <div class="dropdown-item" onclick="addInterest('Quantum Computing', 'selectedInterests')">Quantum Computing</div>
+          <div class="dropdown-item" onclick="addInterest('Robotics', 'selectedInterests')">Robotics</div>
+        </div>
+      </div>
+      
+      <div class="tags-container" id="selectedInterests">
+        <!-- Selected interests will appear here after selection -->
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2 class="section-title">Also select the following to get more opportunities</h2>
+      <div class="dropdown-container">
+        <input type="text" class="search-box" placeholder="Explore more opportunities" readonly onclick="toggleDropdown('moreOpportunitiesDropdown')">
+        <div class="dropdown-menu" id="moreOpportunitiesDropdown">
+          <div class="dropdown-item" onclick="addInterest('Graphic Design', 'additionalInterests')">Graphic Design</div>
+          <div class="dropdown-item" onclick="addInterest('Content Writing', 'additionalInterests')">Content Writing</div>
+          <div class="dropdown-item" onclick="addInterest('Project Management', 'additionalInterests')">Project Management</div>
+          <div class="dropdown-item" onclick="addInterest('Virtual Assistant', 'additionalInterests')">Virtual Assistant</div>
+          <div class="dropdown-item" onclick="addInterest('Financial Analysis', 'additionalInterests')">Financial Analysis</div>
+          <div class="dropdown-item" onclick="addInterest('Business Development', 'additionalInterests')">Business Development</div>
+          <div class="dropdown-item" onclick="addInterest('Technical Writing', 'additionalInterests')">Technical Writing</div>
+          <div class="dropdown-item" onclick="addInterest('Customer Support', 'additionalInterests')">Customer Support</div>
+          <div class="dropdown-item" onclick="addInterest('3D Modeling', 'additionalInterests')">3D Modeling</div>
+          <div class="dropdown-item" onclick="addInterest('Animation', 'additionalInterests')">Animation</div>
+          <div class="dropdown-item" onclick="addInterest('Social Media Management', 'additionalInterests')">Social Media Management</div>
+          <div class="dropdown-item" onclick="addInterest('SEO Optimization', 'additionalInterests')">SEO Optimization</div>
+          <div class="dropdown-item" onclick="addInterest('E-commerce Management', 'additionalInterests')">E-commerce Management</div>
+          <div class="dropdown-item" onclick="addInterest('Video Editing', 'additionalInterests')">Video Editing</div>
+          <div class="dropdown-item" onclick="addInterest('Audio Production', 'additionalInterests')">Audio Production</div>
+          <div class="dropdown-item" onclick="addInterest('Quality Assurance', 'additionalInterests')">Quality Assurance</div>
+          <div class="dropdown-item" onclick="addInterest('Instructional Design', 'additionalInterests')">Instructional Design</div>
+          <div class="dropdown-item" onclick="addInterest('Market Research', 'additionalInterests')">Market Research</div>
+          <div class="dropdown-item" onclick="addInterest('Data Analysis', 'additionalInterests')">Data Analysis</div>
+          <div class="dropdown-item" onclick="addInterest('Copywriting', 'additionalInterests')">Copywriting</div>
+        </div>
+      </div>
+      
+      <div class="tags-container" id="additionalInterests">
+        <!-- Additional opportunities will appear here after selection -->
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2 class="section-title">Popular career interests</h2>
+      <div class="tags-container">
+        <div class="tag tag-small" onclick="addInterest('Sales', 'selectedInterests')">
+          Sales
+          <span class="add-icon">+</span>
+        </div>
+        <div class="tag tag-small" onclick="addInterest('Data Entry', 'selectedInterests')">
+          Data Entry
+          <span class="add-icon">+</span>
+        </div>
+        <div class="tag tag-small" onclick="addInterest('Digital Marketing', 'selectedInterests')">
+          Digital Marketing
+          <span class="add-icon">+</span>
+        </div>
+        <div class="tag tag-small" onclick="addInterest('Marketing', 'selectedInterests')">
+          Marketing
+          <span class="add-icon">+</span>
+        </div>
+        <div class="tag tag-small" onclick="addInterest('Human Resources (HR)', 'selectedInterests')">
+          Human Resources (HR)
+          <span class="add-icon">+</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bottom-bar"></div>
+  </div>
+
+  <script>
+    // Track selected interests for different sections
+    const interests = {
+      selectedInterests: [],
+      additionalInterests: []
+    };
+
+    // Toggle dropdown visibility
+    function toggleDropdown(dropdownId) {
+      // First close all dropdowns
+      const allDropdowns = document.querySelectorAll('.dropdown-menu');
+      allDropdowns.forEach(dropdown => {
+        if (dropdown.id !== dropdownId) {
+          dropdown.classList.remove('active');
+        }
+      });
+      
+      // Then toggle the selected one
+      const dropdown = document.getElementById(dropdownId);
+      dropdown.classList.toggle('active');
+    }
+
+    // Close dropdown when clicking outside
+    window.addEventListener('click', function(event) {
+      if (!event.target.matches('.search-box') && !event.target.closest('.dropdown-menu')) {
+        const dropdowns = document.querySelectorAll('.dropdown-menu');
+        dropdowns.forEach(dropdown => {
+          dropdown.classList.remove('active');
+        });
+      }
+    });
+
+    // Add interest to selected list
+    function addInterest(interest, containerType) {
+      // Check if already selected
+      if (!interests[containerType].includes(interest)) {
+        interests[containerType].push(interest);
+        updateInterests(containerType);
+      }
+      
+      // Hide all dropdowns after selection
+      const dropdowns = document.querySelectorAll('.dropdown-menu');
+      dropdowns.forEach(dropdown => {
+        dropdown.classList.remove('active');
+      });
+    }
+
+    // Remove interest from selected list
+    function removeInterest(interest, containerType) {
+      const index = interests[containerType].indexOf(interest);
+      if (index > -1) {
+        interests[containerType].splice(index, 1);
+        updateInterests(containerType);
+      }
+    }
+
+    // Update the displayed selected interests
+    function updateInterests(containerType) {
+      const container = document.getElementById(containerType);
+      container.innerHTML = '';
+      
+      interests[containerType].forEach(interest => {
+        const tag = document.createElement('div');
+        tag.className = 'tag';
+        tag.innerHTML = `
+          ${interest}
+          <span class="close-icon" onclick="removeInterest('${interest}', '${containerType}')">×</span>
+        `;
+        container.appendChild(tag);
+      });
+    }
+  </script>
+</body>
+</html>
