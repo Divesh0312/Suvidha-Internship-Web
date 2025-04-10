@@ -1,0 +1,202 @@
+/* Reset & Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  body {
+      background: linear-gradient(135deg, #fff9c4, #ffe082, #ffd54f);
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+  
+  /* Login Box */
+  .login-container {
+      position: relative; /* needed to layer above blobs */
+      z-index: 2; /* ensures it's above the blob elements */
+    
+      background-color: #fffde7;
+      padding: 50px 40px;
+      border-radius: 20px;
+      width: 450px;
+      text-align: center;
+    
+      animation: slideFade 1s ease-out, pulse-glow 2s infinite ease-in-out;
+    
+      box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.2),
+        0 0 25px #ffd700,
+        0 0 50px #fff700,
+        0 0 75px #fff700;
+    
+      opacity: 0;
+      transform: translateY(30px);
+      animation-fill-mode: forwards;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    
+    /* 💫 Keyframes for the pulsing glow */
+    @keyframes pulse-glow {
+      0% {
+        box-shadow:
+          0 10px 25px rgba(0, 0, 0, 0.2),
+          0 0 20px #ffd700,
+          0 0 40px #fff700,
+          0 0 60px #fff700;
+      }
+      50% {
+        box-shadow:
+          0 10px 25px rgba(0, 0, 0, 0.2),
+          0 0 30px #ffee32,
+          0 0 50px #fff700,
+          0 0 70px #fff700;
+      }
+      100% {
+        box-shadow:
+          0 10px 25px rgba(0, 0, 0, 0.2),
+          0 0 20px #ffd700,
+          0 0 40px #fff700,
+          0 0 60px #fff700;
+      }
+    }
+    
+    
+    
+    @keyframes slideFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+  .login-container h2 {
+    margin-bottom: 20px;
+    color: #e6b800;
+  }
+  
+  form input {
+    width: 100%;
+    padding: 12px 10px;
+    margin: 10px 0;
+    border: 1px solid #f0c419;
+    border-radius: 8px;
+    background-color: #fffde7;
+  }
+  
+  form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ffd700;
+    color: #333;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+  }
+  
+  form button:hover {
+    background-color: #ffcc00;
+  }
+  
+  .note {
+    margin-top: 15px;
+    font-size: 0.9em;
+  }
+  
+  .note a {
+    color: #e6b800;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-container input[type="text"],
+  .login-container input[type="password"],
+  .login-container input[type="email"],
+  .login-container input[type="tel"] {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 2px solid #fdd835;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: none;
+    background-color: #fff;
+  }
+  
+  /* ✨ Glowing effect on focus */
+  .login-container input[type="text"]:focus,
+  .login-container input[type="password"]:focus,
+  .login-container input[type="email"]:focus,
+  .login-container input[type="tel"]:focus {
+    border-color: #ffeb3b;
+    box-shadow: 0 0 10px #ffee58, 0 0 20px #fff176;
+  }
+  
+  .login-container button:active {
+      transform: scale(0.95);
+      box-shadow: 0 0 10px #ffee58, 0 0 25px #fff176;
+      transition: transform 0.1s ease;
+    }
+    
+    @keyframes success-glow {
+      0% {
+        box-shadow: 0 0 10px #ffee58, 0 0 20px #fff176;
+      }
+      50% {
+        box-shadow: 0 0 25px #ffeb3b, 0 0 45px #fff176;
+        transform: scale(1.05);
+      }
+      100% {
+        box-shadow: 0 0 10px #ffee58, 0 0 20px #fff176;
+        transform: scale(1);
+      }
+    }
+    
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+      filter: blur(80px);
+      z-index: 0;
+      animation: float 10s ease-in-out infinite;
+    }
+    
+    .blob1 {
+      width: 350px;
+      height: 350px;
+      background: #ffeb3b;
+      top: 15%;
+      left: 10%;
+    }
+    
+    .blob2 {
+      width: 400px;
+      height: 400px;
+      background: #fff176;
+      bottom: 15%;
+      right: 10%;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-30px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
