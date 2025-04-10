@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suvidha Foundation - Job Portal Chat Interface</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Main Container */
+        .chat-container {
+            width: 90%;
+            max-width: 1200px;
+            height: 85vh;
+            display: flex;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Left Sidebar Styles */
+        .chat-sidebar {
+            width: 30%;
+            background-color: #FFFFFF;
+            border-right: 1px solid #eaeaea;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background-color: #FFD700;
+            color: #333;
+            font-weight: 600;
+            border-bottom: 1px solid #ebebeb;
+            display: flex;
+            align-items: center;
+        }
+        
+        .company-logo {
+            height: 28px;
+            margin-right: 10px;
+        }
+
+        .search-container {
+            padding: 15px;
+            border-bottom: 1px solid #ebebeb;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ebebeb;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        .chat-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .chat-item {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .chat-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .chat-item.active {
+            background-color: #fff9e0;
+            border-left: 3px solid #FFD700;
+        }
+
+        .chat-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #FFD700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .chat-info {
+            flex: 1;
+        }
+
+        .chat-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .chat-preview {
+            font-size: 13px;
+            color: #888;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 150px;
+        }
+
+        .chat-meta {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .chat-time {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .chat-badge {
+            background-color: #FFD700;
+            color: #333;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        /* Main Chat Area Styles */
+        .chat-main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #f9f9f9;
+        }
+
+        .chat-header {
+            padding: 15px 20px;
+            background-color: #FFFFFF;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .company-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+            background-color: #FFD700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .company-info {
+            flex: 1;
+        }
+
+        .company-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .company-status {
+            font-size: 13px;
+            color: #4CAF50;
+            display: flex;
+            align-items: center;
+        }
+
+        .status-dot {
+            height: 8px;
+            width: 8px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .header-actions i {
+            margin-left: 15px;
+            color: #888;
+            cursor: pointer;
+            font-size: 18px;
+            transition: color 0.2s ease;
+        }
+
+        .header-actions i:hover {
+            color: #FFD700;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message {
+            max-width: 70%;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-content {
+            padding: 12px 15px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+            position: relative;
+        }
+
+        .message-time {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+            align-self: flex-end;
+        }
+
+        .message.received {
+            align-self: flex-start;
+        }
+
+        .message.received .message-content {
+            background-color: #FFFFFF;
+            border-bottom-left-radius: 5px;
+            color: #333;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .message.sent {
+            align-self: flex-end;
+        }
+
+        .message.sent .message-content {
+            background-color: #FFD700;
+            color: #333;
+            border-bottom-right-radius: 5px;
+        }
+
+        .date-divider {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 12px;
+            color: #999;
+            position: relative;
+        }
+
+        .date-divider::before, .date-divider::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 100px;
+            height: 1px;
+            background-color: #ebebeb;
+        }
+
+        .date-divider::before {
+            left: 0;
+        }
+
+        .date-divider::after {
+            right: 0;
+        }
+
+        .chat-input-container {
+            padding: 15px;
+            background-color: #FFFFFF;
+            border-top: 1px solid #ebebeb;
+            display: flex;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ebebeb;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+        }
+
+        .input-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-actions button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            color: #888;
+            transition: all 0.2s ease;
+        }
+
+        .input-actions button:hover {
+            color: #FFD700;
+        }
+
+        .send-btn {
+            background-color: #FFD700 !important;
+            color: #333 !important;
+        }
+
+        .send-btn:hover {
+            background-color: #f7ce00 !important;
+            transform: scale(1.05);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .chat-container {
+                width: 95%;
+                height: 90vh;
+                flex-direction: column;
+            }
+
+            .chat-sidebar {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+                z-index: 2;
+                transform: translateX(-100%);
+            }
+
+            .chat-sidebar.active {
+                transform: translateX(0);
+            }
+
+            .chat-main {
+                width: 100%;
+            }
+
+            .chat-header {
+                padding: 10px 15px;
+            }
+
+            .company-avatar {
+                width: 35px;
+                height: 35px;
+            }
+
+            .menu-toggle {
+                display: block !important;
+                margin-right: 10px;
+            }
+
+            .message {
+                max-width: 85%;
+            }
+        }
+
+        /* Menu Toggle for Mobile */
+        .menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #555;
+        }
+
+        /* Utility classes */
+        .hidden {
+            display: none;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ccc;
+        }
+
+        /* Footer Branding */
+        .powered-by {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .powered-by strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Chat Container -->
+    <div class="chat-container">
+        <!-- Left Sidebar -->
+        <div class="chat-sidebar">
+            <!-- Sidebar Header -->
+            <div class="sidebar-header">
+                <h2>Suvidha Foundation</h2>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search conversations...">
+            </div>
+            
+            <!-- Chat List -->
+            <div class="chat-list">
+                <!-- Active Chat Item -->
+                <div class="chat-item active">
+                    <div class="chat-avatar">AC</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Acme Corporation</div>
+                        <div class="chat-preview">When can you start the internship?</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">12:42 PM</div>
+                        <div class="chat-badge">2</div>
+                    </div>
+                </div>
+                
+                <!-- Other Chat Items -->
+                <div class="chat-item">
+                    <div class="chat-avatar">GI</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Google Inc.</div>
+                        <div class="chat-preview">Thanks for your application!</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">Yesterday</div>
+                    </div>
+                </div>
+                
+                <div class="chat-item">
+                    <div class="chat-avatar">MS</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Microsoft</div>
+                        <div class="chat-preview">Your interview is scheduled for...</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">Apr 8</div>
+                    </div>
+                </div>
+                
+                <div class="chat-item">
+                    <div class="chat-avatar">AZ</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Amazon</div>
+                        <div class="chat-preview">Please share your portfolio link.</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">Apr 7</div>
+                    </div>
+                </div>
+                
+                <div class="chat-item">
+                    <div class="chat-avatar">FB</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Facebook</div>
+                        <div class="chat-preview">We liked your resume and would...</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">Apr 5</div>
+                    </div>
+                </div>
+                
+                <div class="chat-item">
+                    <div class="chat-avatar">TB</div>
+                    <div class="chat-info">
+                        <div class="chat-name">TechBoost Inc.</div>
+                        <div class="chat-preview">Congratulations! You've been...</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">Apr 3</div>
+                    </div>
+                </div>
+                
+                <div class="chat-item">
+                    <div class="chat-avatar">NC</div>
+                    <div class="chat-info">
+                        <div class="chat-name">NetCore Solutions</div>
+                        <div class="chat-preview">Hello! We reviewed your application...</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">Mar 29</div>
+                    </div>
+                </div>
+                
+                <div class="chat-item">
+                    <div class="chat-avatar">SF</div>
+                    <div class="chat-info">
+                        <div class="chat-name">Suvidha Foundation</div>
+                        <div class="chat-preview">Would you be interested in joining...</div>
+                    </div>
+                    <div class="chat-meta">
+                        <div class="chat-time">Mar 25</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Chat Area -->
+        <div class="chat-main">
+            <!-- Chat Header -->
+            <div class="chat-header">
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="company-avatar">AC</div>
+                <div class="company-info">
+                    <div class="company-name">Acme Corporation</div>
+                    <div class="company-status">
+                        <span class="status-dot"></span>
+                        Online
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <i class="fas fa-phone"></i>
+                    <i class="fas fa-video"></i>
+                    <i class="fas fa-info-circle"></i>
+                </div>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div class="chat-messages">
+                <!-- Date Divider -->
+                <div class="date-divider">Today</div>
+                
+                <!-- Received Message -->
+                <div class="message received">
+                    <div class="message-content">
+                        Hello! Thank you for applying to our summer internship program. We were impressed with your resume.
+                    </div>
+                    <div class="message-time">10:30 AM</div>
+                </div>
+                
+                <!-- Sent Message -->
+                <div class="message sent">
+                    <div class="message-content">
+                        Thank you! I'm very excited about the opportunity to work with your team.
+                    </div>
+                    <div class="message-time">10:32 AM</div>
+                </div>
+                
+                <!-- Received Message -->
+                <div class="message received">
+                    <div class="message-content">
+                        Great! We'd like to schedule an interview with you. Are you available next week?
+                    </div>
+                    <div class="message-time">10:35 AM</div>
+                </div>
+                
+                <!-- Sent Message -->
+                <div class="message sent">
+                    <div class="message-content">
+                        Yes, I'm available on Monday and Wednesday afternoon. Would either of those work for you?
+                    </div>
+                    <div class="message-time">10:36 AM</div>
+                </div>
+                
+                <!-- Received Message -->
+                <div class="message received">
+                    <div class="message-content">
+                        Wednesday at 2 PM works for us. We'll send you the details via email. Could you also send us your portfolio before the interview?
+                    </div>
+                    <div class="message-time">10:40 AM</div>
+                </div>
+                
+                <!-- Sent Message -->
+                <div class="message sent">
+                    <div class="message-content">
+                        Wednesday at 2 PM sounds perfect! Yes, I'll send my portfolio today. Is there anything specific from my projects you'd like me to highlight?
+                    </div>
+                    <div class="message-time">10:45 AM</div>
+                </div>
+                
+                <!-- Received Message -->
+                <div class="message received">
+                    <div class="message-content">
+                        We're particularly interested in any web development or UI/UX projects you've worked on. Also, please be prepared to discuss your experience with JavaScript frameworks.
+                    </div>
+                    <div class="message-time">11:00 AM</div>
+                </div>
+                
+                <!-- Sent Message -->
+                <div class="message sent">
+                    <div class="message-content">
+                        Perfect! I have several web development projects in my portfolio, including a recent one using React.js. I'll make sure to highlight those and will be prepared to discuss my JavaScript experience in detail.
+                    </div>
+                    <div class="message-time">11:05 AM</div>
+                </div>
+                
+                <!-- Received Message -->
+                <div class="message received">
+                    <div class="message-content">
+                        Sounds great! Looking forward to our conversation on Wednesday. When can you start the internship if selected?
+                    </div>
+                    <div class="message-time">12:42 PM</div>
+                </div>
+            </div>
+            
+            <!-- Chat Input Area -->
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" placeholder="Type your message...">
+                <div class="input-actions">
+                    <button>
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <button>
+                        <i class="far fa-smile"></i>
+                    </button>
+                    <button class="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="powered-by">Powered by <strong>Suvidha Foundation</strong></div>
+
+    <script>
+        // This is just a minimal script to toggle the sidebar on mobile
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.chat-sidebar').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
