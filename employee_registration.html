@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Registration</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff8dc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 30px 40px;
+      background-color: #fffbea;
+      box-shadow: 0 0 15px rgba(255, 208, 0, 0.4);
+      border-radius: 12px;
+      border: 2px solid #ffd700;
+    }
+
+    h2 {
+      text-align: center;
+      color: #d4af37;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 6px;
+    }
+
+    .terms {
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .terms a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+
+    .terms a:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      background-color: #ffd700;
+      border: none;
+      color: #333;
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 6px;
+      width: 100%;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #e6c200;
+    }
+
+    .section-title {
+      margin-top: 25px;
+      font-size: 18px;
+      color: #b8860b;
+      border-bottom: 1px solid #ffd700;
+      padding-bottom: 5px;
+    }
+
+    small {
+      display: block;
+      margin-top: 5px;
+      color: #666;
+      font-size: 12px;
+    }
+
+    #password-strength-text {
+      margin-top: 5px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Employee Registration</h2>
+    <p class="subtitle">Register your company account to access the portal</p>
+
+    <div class="section-title">Basic Information</div>
+    <label for="name">Full Name</label>
+    <input type="text" id="name" placeholder="Enter your full name" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter your email address" required>
+
+    <label for="phone">Phone Number</label>
+    <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" maxlength="10" placeholder="Create password (max 10 characters)" required>
+    <small id="password-strength-text"></small>
+
+    <label for="confirm-password">Confirm Password</label>
+    <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+
+    <div class="section-title">Company Information</div>
+    <label for="company-name">Company Name</label>
+    <input type="text" id="company-name" placeholder="Enter your company name" required>
+
+    <label for="website">Company Website</label>
+    <input type="url" id="website" placeholder="Enter company website URL">
+
+    <label for="employee-id">Employee ID/Designation</label>
+    <input type="text" id="employee-id" placeholder="Enter your employee ID or designation" required>
+
+    <label for="department">Department</label>
+    <select id="department" required>
+      <option value="">Select your department</option>
+      <option value="hr">Human Resources</option>
+      <option value="it">Information Technology</option>
+      <option value="marketing">Marketing</option>
+      <option value="operations">Operations</option>
+      <option value="finance">Finance</option>
+      <option value="other">Other</option>
+    </select>
+
+    <div class="section-title">Verification</div>
+    <label for="company-id">Upload Company ID/Verification Document</label>
+    <input type="file" id="company-id" required>
+    <small>Upload a scanned copy of your company ID or verification document</small>
+
+    <div class="terms">
+      <input type="checkbox" id="agree" required>
+      <label for="agree">I agree to the <a href="#">Terms & Conditions</a></label>
+    </div>
+
+    <button type="submit" class="btn">Register</button>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('password');
+    const strengthText = document.getElementById('password-strength-text');
+  
+    passwordInput.addEventListener('input', () => {
+      const password = passwordInput.value;
+  
+      const hasUpper = /[A-Z]/.test(password);
+      const hasLower = /[a-z]/.test(password);
+      const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+      const hasNumber = /[0-9]/.test(password);
+  
+      let strength = 0;
+      if (hasUpper) strength++;
+      if (hasLower) strength++;
+      if (hasSpecial) strength++;
+      if (hasNumber) strength++;
+  
+      if (password.length === 0) {
+        passwordInput.style.backgroundColor = 'white';
+        strengthText.textContent = '';
+      } else if (strength <= 1 || password.length < 6) {
+        passwordInput.style.backgroundColor = '#ffcccc';
+        strengthText.textContent = 'Weak password';
+        strengthText.style.color = '#cc0000';
+      } else if (strength === 2 || password.length < 8) {
+        passwordInput.style.backgroundColor = '#fff4cc';
+        strengthText.textContent = 'Moderate password';
+        strengthText.style.color = '#ff9900';
+      } else if (strength >= 3 && password.length >= 8) {
+        passwordInput.style.backgroundColor = '#d4fcd4';
+        strengthText.textContent = 'Strong password';
+        strengthText.style.color = '#33cc33';
+      }
+    });
+
+    // Confirm password validation
+    const confirmPassword = document.getElementById('confirm-password');
+    confirmPassword.addEventListener('input', () => {
+      if (confirmPassword.value !== passwordInput.value) {
+        confirmPassword.style.borderColor = '#ff6666';
+      } else {
+        confirmPassword.style.borderColor = '#ccc';
+      }
+    });
+  </script>
+</body>
+</html>
