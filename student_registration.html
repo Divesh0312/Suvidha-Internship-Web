@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Registration</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff8dc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 30px 40px;
+      background-color: #fffbea;
+      box-shadow: 0 0 15px rgba(255, 208, 0, 0.4);
+      border-radius: 12px;
+      border: 2px solid #ffd700;
+    }
+
+    h2 {
+      text-align: center;
+      color: #d4af37;
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .terms {
+      margin: 10px 0;
+    }
+
+    .terms a {
+      color: #d4af37;
+      text-decoration: none;
+    }
+
+    .terms a:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      background-color: #ffd700;
+      border: none;
+      color: #333;
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background-color: #e6c200;
+    }
+
+    .section-title {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #b8860b;
+    }
+
+    small {
+      font-size: 12px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Student Registration</h2>
+    <p style="text-align: center;">Register to access placement opportunities</p>
+
+    <div class="section-title">Personal Information</div>
+    <label for="full-name">Full Name</label>
+    <input type="text" id="full-name" placeholder="Enter your name">
+
+    <label for="email">Email ID</label>
+    <input type="email" id="email" placeholder="Enter your email">
+
+    <label for="contact">Contact Number</label>
+    <input type="text" id="contact" placeholder="Enter your mobile number">
+
+    <label for="password">Password</label>
+    <input type="password" id="password" maxlength="10" placeholder="Max 10 characters">
+    <small id="password-strength-text"></small>
+
+    <label for="confirm-password">Confirm Password</label>
+    <input type="password" id="confirm-password" placeholder="Re-enter password">
+
+    <div class="section-title">Academic Information</div>
+    <label for="college">College Name</label>
+    <input type="text" id="college" placeholder="Enter your college name">
+
+    <label for="branch">Branch</label>
+    <input type="text" id="branch" placeholder="e.g. Computer Engineering">
+
+    <label for="year">Year of Study</label>
+    <select id="year">
+      <option value="" disabled selected>Select year</option>
+      <option value="1">First Year</option>
+      <option value="2">Second Year</option>
+      <option value="3">Third Year</option>
+      <option value="4">Final Year</option>
+    </select>
+
+    <div class="terms">
+      <input type="checkbox" id="agree">
+      <label for="agree">I agree to the <a href="#">Terms & Conditions</a></label>
+    </div>
+
+    <button class="btn">Register</button>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('password');
+    const strengthText = document.getElementById('password-strength-text');
+
+    passwordInput.addEventListener('input', () => {
+      const password = passwordInput.value;
+      const hasUpper = /[A-Z]/.test(password);
+      const hasLower = /[a-z]/.test(password);
+      const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+      let strength = 0;
+      if (hasUpper) strength++;
+      if (hasLower) strength++;
+      if (hasSpecial) strength++;
+
+      if (password.length === 0) {
+        passwordInput.style.backgroundColor = 'white';
+        strengthText.textContent = '';
+      } else if (strength === 1 || password.length < 6) {
+        passwordInput.style.backgroundColor = '#ffcccc';
+        strengthText.textContent = 'Weak password';
+        strengthText.style.color = '#cc0000';
+      } else if (strength === 2) {
+        passwordInput.style.backgroundColor = '#fff4cc';
+        strengthText.textContent = 'Moderate password';
+        strengthText.style.color = '#ff9900';
+      } else if (strength === 3 && password.length >= 6) {
+        passwordInput.style.backgroundColor = '#d4fcd4';
+        strengthText.textContent = 'Strong password';
+        strengthText.style.color = '#33cc33';
+      }
+    });
+  </script>
+</body>
+</html>
