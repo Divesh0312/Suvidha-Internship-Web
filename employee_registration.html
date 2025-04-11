@@ -27,11 +27,6 @@
       color: #d4af37;
     }
 
-    .subtitle {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
     label {
       display: block;
       margin: 10px 0 5px;
@@ -41,15 +36,12 @@
     input[type="text"],
     input[type="email"],
     input[type="password"],
-    input[type="tel"],
-    input[type="url"],
     input[type="file"],
     select {
       width: 100%;
       padding: 8px;
       border: 1px solid #ccc;
       border-radius: 6px;
-      box-sizing: border-box;
     }
 
     input[type="checkbox"] {
@@ -57,9 +49,7 @@
     }
 
     .terms {
-      margin: 15px 0;
-      display: flex;
-      align-items: center;
+      margin: 10px 0;
     }
 
     .terms a {
@@ -75,15 +65,12 @@
       background-color: #ffd700;
       border: none;
       color: #333;
-      padding: 12px 20px;
-      text-align: center;
+      padding: 10px 20px;
       font-size: 16px;
       margin-top: 10px;
       cursor: pointer;
       border-radius: 6px;
       width: 100%;
-      font-weight: bold;
-      transition: background-color 0.3s;
     }
 
     .btn:hover {
@@ -91,125 +78,103 @@
     }
 
     .section-title {
-      margin-top: 25px;
+      margin-top: 20px;
       font-size: 18px;
       color: #b8860b;
-      border-bottom: 1px solid #ffd700;
-      padding-bottom: 5px;
     }
 
     small {
-      display: block;
-      margin-top: 5px;
-      color: #666;
       font-size: 12px;
-    }
-
-    #password-strength-text {
-      margin-top: 5px;
-      font-size: 12px;
+      color: #555;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h2>Employee Registration</h2>
-    <p class="subtitle">Register your company account to access the portal</p>
+    <p style="text-align: center;">Register to access employee portal features</p>
 
     <div class="section-title">Basic Information</div>
-    <label for="name">Full Name</label>
-    <input type="text" id="name" placeholder="Enter your full name" required>
+    <label for="full-name">Full Name</label>
+    <input type="text" id="full-name" placeholder="Enter your full name">
 
     <label for="email">Email</label>
-    <input type="email" id="email" placeholder="Enter your email address" required>
+    <input type="email" id="email" placeholder="Enter your email address">
 
     <label for="phone">Phone Number</label>
-    <input type="tel" id="phone" placeholder="Enter your phone number" required>
+    <input type="text" id="phone" placeholder="Enter your phone number">
 
     <label for="password">Password</label>
-    <input type="password" id="password" maxlength="10" placeholder="Create password (max 10 characters)" required>
+    <input type="password" id="password" maxlength="10" placeholder="Create password (max 10 characters)">
     <small id="password-strength-text"></small>
 
     <label for="confirm-password">Confirm Password</label>
-    <input type="password" id="confirm-password" placeholder="Confirm your password" required>
+    <input type="password" id="confirm-password" placeholder="Confirm your password">
 
     <div class="section-title">Company Information</div>
     <label for="company-name">Company Name</label>
-    <input type="text" id="company-name" placeholder="Enter your company name" required>
+    <input type="text" id="company-name" placeholder="Enter your company name">
 
-    <label for="website">Company Website</label>
-    <input type="url" id="website" placeholder="Enter company website URL">
+    <label for="company-website">Company Website</label>
+    <input type="text" id="company-website" placeholder="Enter company website URL">
 
-    <label for="employee-id">Employee ID/Designation</label>
-    <input type="text" id="employee-id" placeholder="Enter your employee ID or designation" required>
+    <label for="designation">Employee ID/Designation</label>
+    <input type="text" id="designation" placeholder="Enter your employee ID or designation">
 
     <label for="department">Department</label>
-    <select id="department" required>
-      <option value="">Select your department</option>
-      <option value="hr">Human Resources</option>
-      <option value="it">Information Technology</option>
-      <option value="marketing">Marketing</option>
-      <option value="operations">Operations</option>
-      <option value="finance">Finance</option>
-      <option value="other">Other</option>
+    <select id="department">
+      <option value="" disabled selected>Select your department</option>
+      <option value="HR">HR</option>
+      <option value="IT">IT</option>
+      <option value="Sales">Sales</option>
+      <option value="Marketing">Marketing</option>
+      <option value="Finance">Finance</option>
+      <option value="Other">Other</option>
     </select>
 
     <div class="section-title">Verification</div>
-    <label for="company-id">Upload Company ID/Verification Document</label>
-    <input type="file" id="company-id" required>
+    <label for="verification-doc">Upload Company ID/Verification Document</label>
+    <input type="file" id="verification-doc">
     <small>Upload a scanned copy of your company ID or verification document</small>
 
     <div class="terms">
-      <input type="checkbox" id="agree" required>
+      <input type="checkbox" id="agree">
       <label for="agree">I agree to the <a href="#">Terms & Conditions</a></label>
     </div>
 
-    <button type="submit" class="btn">Register</button>
+    <button class="btn">Register</button>
   </div>
 
   <script>
     const passwordInput = document.getElementById('password');
     const strengthText = document.getElementById('password-strength-text');
-  
+
     passwordInput.addEventListener('input', () => {
       const password = passwordInput.value;
-  
       const hasUpper = /[A-Z]/.test(password);
       const hasLower = /[a-z]/.test(password);
       const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-      const hasNumber = /[0-9]/.test(password);
-  
+
       let strength = 0;
       if (hasUpper) strength++;
       if (hasLower) strength++;
       if (hasSpecial) strength++;
-      if (hasNumber) strength++;
-  
+
       if (password.length === 0) {
         passwordInput.style.backgroundColor = 'white';
         strengthText.textContent = '';
-      } else if (strength <= 1 || password.length < 6) {
+      } else if (strength === 1 || password.length < 6) {
         passwordInput.style.backgroundColor = '#ffcccc';
         strengthText.textContent = 'Weak password';
         strengthText.style.color = '#cc0000';
-      } else if (strength === 2 || password.length < 8) {
+      } else if (strength === 2) {
         passwordInput.style.backgroundColor = '#fff4cc';
         strengthText.textContent = 'Moderate password';
         strengthText.style.color = '#ff9900';
-      } else if (strength >= 3 && password.length >= 8) {
+      } else if (strength === 3 && password.length >= 6) {
         passwordInput.style.backgroundColor = '#d4fcd4';
         strengthText.textContent = 'Strong password';
         strengthText.style.color = '#33cc33';
-      }
-    });
-
-    // Confirm password validation
-    const confirmPassword = document.getElementById('confirm-password');
-    confirmPassword.addEventListener('input', () => {
-      if (confirmPassword.value !== passwordInput.value) {
-        confirmPassword.style.borderColor = '#ff6666';
-      } else {
-        confirmPassword.style.borderColor = '#ccc';
       }
     });
   </script>
