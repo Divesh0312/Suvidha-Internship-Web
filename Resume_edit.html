@@ -1,0 +1,210 @@
+<!-- Kalpak Kulkarni -->
+
+<!-- Resume _Portal -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Resume - Portal</title>
+    <link rel="stylesheet" href="Resume_edit.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1> Resume Portal</h1>
+            <div class="header-buttons">
+                <button>Dashboard</button>
+                <button>Logout</button>
+            </div>
+        </header>
+        
+        <div class="resume-card">
+            <div class="profile-section">
+                <div class="profile-image" id="profile-image">
+                    <span>Photo</span>
+                    <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                </div>
+                <div class="profile-info">
+                    <div class="editable-field" id="full-name" contenteditable="true">Kalpak Kulkarni</div>
+                    <div class="editable-field" id="course-year" contenteditable="true">IT Engineering | 3rd Year</div>
+                    <div class="editable-field" id="email" contenteditable="true">Email: Kalpak@example.com</div>
+                    <div class="editable-field" id="phone" contenteditable="true">Phone: +91 98765 43210</div>
+                    <div class="editable-field" id="location" contenteditable="true">Location: Mumbai, Maharashtra</div>
+                </div>
+            </div>
+            
+            <div class="section" id="education-section">
+                <div class="section-header">
+                    <h3>Education</h3>
+                    <button class="add-button" id="add-education">+ Add Education</button>
+                </div>
+                
+                <div class="education-item">
+                    <div class="editable-field" contenteditable="true">B.Tech in Computer Engineering</div>
+                    <div class="education-meta">
+                        <div class="editable-field" contenteditable="true">VIT Engineering College</div>
+                        <div class="editable-field" contenteditable="true">2022 - 2026</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">CGPA: 9.5/10</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="editable-field" contenteditable="true">Higher Secondary Education</div>
+                    <div class="education-meta">
+                        <div class="editable-field" contenteditable="true">ABC Higher Secondary School</div>
+                        <div class="editable-field" contenteditable="true">2020 - 2021</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">Percentage: 92%</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="experience-section">
+                <div class="section-header">
+                    <h3>Experience</h3>
+                    <button class="add-button" id="add-experience">+ Add Experience</button>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="editable-field" contenteditable="true">Web Development Intern</div>
+                    <div class="experience-meta">
+                        <div class="editable-field" contenteditable="true">Tech Solutions Pvt. Ltd.</div>
+                        <div class="editable-field" contenteditable="true">May 2023 - July 2023</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">Worked on frontend development using React.js and assisted in API integration. Created responsive UI components and participated in code reviews.</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <div class="editable-field" contenteditable="true">Technical Team Member</div>
+                    <div class="experience-meta">
+                        <div class="editable-field" contenteditable="true">College Tech Fest</div>
+                        <div class="editable-field" contenteditable="true">Jan 2023 - Present</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">Managing college website and handling technical aspects of college events. Coordinating with various departments for technical support.</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="projects-section">
+                <div class="section-header">
+                    <h3>Projects</h3>
+                    <button class="add-button" id="add-project">+ Add Project</button>
+                </div>
+                
+                <div class="project-item">
+                    <div class="editable-field" contenteditable="true">Smart Attendance System</div>
+                    <div class="project-meta">
+                        <div class="editable-field" contenteditable="true">College Project</div>
+                        <div class="editable-field" contenteditable="true">Feb 2023 - Apr 2023</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">Developed a facial recognition-based attendance system using Python, OpenCV, and Flask. Created a web interface for faculty to monitor attendance records.</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="editable-field" contenteditable="true">E-commerce Website</div>
+                    <div class="project-meta">
+                        <div class="editable-field" contenteditable="true">Personal Project</div>
+                        <div class="editable-field" contenteditable="true">Nov 2022 - Jan 2023</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">Built a full-stack e-commerce website with features like user authentication, product listing, cart management, and payment gateway integration.</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="skills-section">
+                <div class="section-header">
+                    <h3>Skills</h3>
+                    <button class="add-button" id="add-skill">+ Add Skill</button>
+                </div>
+                
+                <div class="skills-list">
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">HTML/CSS</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">JavaScript</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">React.js</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">Python</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">Java</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">SQL</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">Git</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">Data Structures</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">Problem Solving</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="achievements-section">
+                <div class="section-header">
+                    <h3>Achievements</h3>
+                    <button class="add-button" id="add-achievement">+ Add Achievement</button>
+                </div>
+                
+                <ul class="achievements-list">
+                    <li>
+                        <div class="editable-field" contenteditable="true">Winner of National Coding Competition 2023</div>
+                        <button class="remove-achievement">×</button>
+                    </li>
+                    <li>
+                        <div class="editable-field" contenteditable="true">3rd Prize in College Hackathon 2022</div>
+                        <button class="remove-achievement">×</button>
+                    </li>
+                    <li>
+                        <div class="editable-field" contenteditable="true">5-star rating on HackerRank in Problem Solving</div>
+                        <button class="remove-achievement">×</button>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="save-section">
+                <button id="save-resume" class="save-button">Save Resume</button>
+            </div>
+        </div>
+        
+        <footer>
+            &copy; 2026 Resume Portal. All rights reserved.
+        </footer>
+    </div>
+    
+    <script src="Resume_edit.js"></script>
+</body>
+</html>

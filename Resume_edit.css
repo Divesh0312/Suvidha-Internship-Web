@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #FFEA82;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #FFD700;
+}
+
+header h1 {
+    color: #CC9900;
+}
+
+.header-buttons button {
+    background-color: #FFD700;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.header-buttons button:hover {
+    background-color: #E6C200;
+}
+
+.resume-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 20px 0;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.profile-section {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+.profile-info #full-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #CC9900;
+    font-weight: bold;
+}
+
+.profile-info div {
+    margin-bottom: 5px;
+}
+
+.section {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section h3 {
+    font-size: 20px;
+    color: #CC9900;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.experience-item, .education-item, .project-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #f0f0f0;
+    position: relative;
+}
+
+.experience-item:hover, .education-item:hover, .project-item:hover {
+    background-color: #FFFDF0;
+}
+
+.experience-item div:first-child, .education-item div:first-child, .project-item div:first-child {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.experience-meta, .education-meta, .project-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.editable-field {
+    padding: 5px;
+    border-radius: 3px;
+    min-height: 22px;
+}
+
+.editable-field:hover {
+    background-color: #FFF8DC;
+}
+
+.editable-field:focus {
+    outline: 2px solid #FFD700;
+    background-color: #FFF8DC;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    background-color: #FFF8DC;
+    border: 1px solid #FFD700;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.remove-skill, .remove-achievement {
+    background: none;
+    border: none;
+    color: #CC9900;
+    margin-left: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.add-button {
+    background-color: #FFEA82;
+    border: 1px solid #FFD700;
+    color: #CC9900;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-button:hover {
+    background-color: #FFD700;
+}
+
+.delete-button {
+    background-color: #FFF0F0;
+    border: 1px solid #FFCCCC;
+    color: #CC0000;
+    padding: 3px 8px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.delete-button:hover {
+    background-color: #FFCCCC;
+}
+
+.item-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.achievements-list {
+    list-style-position: inside;
+    padding-left: 10px;
+}
+
+.achievements-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.achievements-list li .editable-field {
+    flex-grow: 1;
+}
+
+.save-section {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.save-button {
+    background-color: #FFD700;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.save-button:hover {
+    background-color: #E6C200;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    color: #666;
+    border-top: 1px solid #FFD700;
+}
