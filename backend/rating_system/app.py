@@ -28,6 +28,25 @@ class Rating(db.Model):
     rating = db.Column(db.Integer, nullable=False)
     comment = db.Column(db.Text)
 
+##------Uploads for resume, certificates and projects-----## 
+class Profile(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
+    resume_path = db.Column(db.String(200))
+    user = db.relationship('User', backref=db.backref('profile', uselist=False))
+
+class Certificate(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    filename = db.Column(db.String(200))
+
+class Project(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    project_name = db.Column(db.String(100))
+    github_link = db.Column(db.String(200))
+
+
 # ------------------ Database Initialization ------------------ #
 def init_db():
     with app.app_context():
@@ -92,7 +111,7 @@ def dashboard():
         return render_template('login.html', error=f"Error loading dashboard: {str(e)}")
 
 
-
+#--------approute for uploading resume,certificates and project
 
 UPLOAD_FOLDER = 'uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -102,53 +121,54 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/profile', methods=['GET', 'POST'])
-def profile():
+def stu_uploads():
     if 'user_id' not in session:
         return redirect('/login')
 
     user_id = session['user_id']
 
     if request.method == 'POST':
-        project_name = request.form['project_name']
-        github_link = request.form['github_link']
-
+        # Handle single resume upload
         resume = request.files.get('resume')
-        certification = request.files.get('certification')
-
-        resume_path = certification_path = None
+        resume_path = None
 
         if resume and allowed_file(resume.filename):
             resume_filename = secure_filename(resume.filename)
             resume_path = os.path.join(app.config['UPLOAD_FOLDER'], resume_filename)
             resume.save(resume_path)
 
-        if certification and allowed_file(certification.filename):
-            cert_filename = secure_filename(certification.filename)
-            certification_path = os.path.join(app.config['UPLOAD_FOLDER'], cert_filename)
-            certification.save(certification_path)
+            profile = Profile.query.filter_by(user_id=user_id).first()
+            if profile:
+                profile.resume_path = resume_path
+            else:
+                profile = Profile(user_id=user_id, resume_path=resume_path)
+                db.session.add(profile)
 
-        existing = Profile.query.filter_by(user_id=user_id).first()
-        if existing:
-            existing.resume_path = resume_path
-            existing.certification_path = certification_path
-            existing.project_name = project_name
-            existing.github_link = github_link
-        else:
-            new_profile = Profile(
-                user_id=user_id,
-                resume_path=resume_path,
-                certification_path=certification_path,
-                project_name=project_name,
-                github_link=github_link
-            )
-            db.session.add(new_profile)
+        # Handle multiple certificate uploads
+        certificate_files = request.files.getlist('certifications')
+        for cert_file in certificate_files:
+            if cert_file and allowed_file(cert_file.filename):
+                cert_filename = secure_filename(cert_file.filename)
+                cert_path = os.path.join(app.config['UPLOAD_FOLDER'], cert_filename)
+                cert_file.save(cert_path)
+                new_cert = Certificate(user_id=user_id, filename=cert_path)
+                db.session.add(new_cert)
+
+        # Handle multiple projects
+        project_names = request.form.getlist('project_name')
+        github_links = request.form.getlist('github_link')
+        for pname, glink in zip(project_names, github_links):
+            if pname.strip() != '' and glink.strip() != '':
+                new_project = Project(user_id=user_id, project_name=pname, github_link=glink)
+                db.session.add(new_project)
 
         db.session.commit()
         return redirect('/dashboard')
 
     profile = Profile.query.filter_by(user_id=user_id).first()
-    return render_template('profile.html', profile=profile)
-
+    certificates = Certificate.query.filter_by(user_id=user_id).all()
+    projects = Project.query.filter_by(user_id=user_id).all()
+    return render_template('profile.html', profile=profile, certificates=certificates, projects=projects)
 
 
 

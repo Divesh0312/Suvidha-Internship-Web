@@ -1,11 +1,4 @@
-paste your mysql data base queries here 
-
-
-example:
-create table ;
-
-
-
+-- Users Table
 CREATE TABLE User (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(100) NOT NULL UNIQUE,
@@ -13,8 +6,7 @@ CREATE TABLE User (
     role VARCHAR(20) NOT NULL -- student, employee, or company
 );
 
-
-
+-- Ratings Table
 CREATE TABLE Rating (
     id INT AUTO_INCREMENT PRIMARY KEY,
     from_id INT NOT NULL,
@@ -25,4 +17,29 @@ CREATE TABLE Rating (
     FOREIGN KEY (to_id) REFERENCES User(id)
 );
 
+-- query to upload single resume and multiple projects and Certificates--
 
+-- Profile Table (1 resume per user)
+CREATE TABLE Profile (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL UNIQUE,
+    resume_path VARCHAR(255),
+    FOREIGN KEY (user_id) REFERENCES User(id)
+);
+
+-- Certificates Table (multiple per user)
+CREATE TABLE Certificate (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    filename VARCHAR(255) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(id)
+);
+
+-- Projects Table (multiple per user)
+CREATE TABLE Project (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    project_name VARCHAR(255) NOT NULL,
+    github_link VARCHAR(255) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES User(id)
+);
