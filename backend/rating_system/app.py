@@ -1,6 +1,8 @@
+import os
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
-import os
+from werkzeug.utils import secure_filename
+
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -88,6 +90,67 @@ def dashboard():
         return render_template('dashboard.html', user=user, others=others, received=received)
     except Exception as e:
         return render_template('login.html', error=f"Error loading dashboard: {str(e)}")
+
+
+
+
+UPLOAD_FOLDER = 'uploads'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = {'pdf', 'doc', 'docx'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/profile', methods=['GET', 'POST'])
+def profile():
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    user_id = session['user_id']
+
+    if request.method == 'POST':
+        project_name = request.form['project_name']
+        github_link = request.form['github_link']
+
+        resume = request.files.get('resume')
+        certification = request.files.get('certification')
+
+        resume_path = certification_path = None
+
+        if resume and allowed_file(resume.filename):
+            resume_filename = secure_filename(resume.filename)
+            resume_path = os.path.join(app.config['UPLOAD_FOLDER'], resume_filename)
+            resume.save(resume_path)
+
+        if certification and allowed_file(certification.filename):
+            cert_filename = secure_filename(certification.filename)
+            certification_path = os.path.join(app.config['UPLOAD_FOLDER'], cert_filename)
+            certification.save(certification_path)
+
+        existing = Profile.query.filter_by(user_id=user_id).first()
+        if existing:
+            existing.resume_path = resume_path
+            existing.certification_path = certification_path
+            existing.project_name = project_name
+            existing.github_link = github_link
+        else:
+            new_profile = Profile(
+                user_id=user_id,
+                resume_path=resume_path,
+                certification_path=certification_path,
+                project_name=project_name,
+                github_link=github_link
+            )
+            db.session.add(new_profile)
+
+        db.session.commit()
+        return redirect('/dashboard')
+
+    profile = Profile.query.filter_by(user_id=user_id).first()
+    return render_template('profile.html', profile=profile)
+
+
+
 
 @app.route('/rate/<int:to_id>', methods=['GET', 'POST'])
 def rate(to_id):
