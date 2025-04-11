@@ -1,9 +1,13 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
+import os
+
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ratingsystem.db'
+app.secret_key = 'suvidha-802'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('MYSQL_DB_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)

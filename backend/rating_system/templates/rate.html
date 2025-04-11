@@ -186,7 +186,7 @@
                 });
                 const selectedValue = input.value;
                 document.querySelectorAll('.star-rating input').forEach(inp => {
-                    if (inp.value <= selectedValue) {
+                    if (inp.value >= selectedValue) {
                         document.querySelector(`label[for=${inp.id}]`).style.color = '#ffd700';
                     }
                 });
