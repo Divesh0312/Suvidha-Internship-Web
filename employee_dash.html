@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Employee Dashboard - Suvidha Foundation</title>
+  <link rel="stylesheet" href="employee_dash.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <h1>Employee Dashboard</h1>
+    </div>
+    <button class="logout-btn">Logout</button>
+  </header>
+
+  <aside class="sidebar">
+    <ul>
+      <li class="active">Dashboard</li>
+      <li>Post Internship</li>
+      <li>Applications</li>
+      <li>Messages</li>
+    </ul>
+  </aside>
+
+  <main>
+    <section class="stats">
+      <div class="card"><h3>Total Students</h3><p>120</p></div>
+      <div class="card"><h3>Internships Posted</h3><p>15</p></div>
+      <div class="card"><h3>Applications</h3><p>89</p></div>
+      <div class="card"><h3>Messages</h3><p>12</p></div>
+    </section>
+
+    <section class="students">
+      <div class="section-header">
+        <h2>Student Applications</h2>
+        <button class="post-btn">+ Post Internship</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Branch</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Sneha Brahmane</td><td>sneha@example.com</td><td>Computer Engineering</td><td>Shortlisted</td></tr>
+          <tr><td>Shravani Borji</td><td>shravani@example.com</td><td>IT</td><td>Applied</td></tr>
+          <tr><td>Tanvi Kharade</td><td>tanvi@example.com</td><td>EXTC</td><td>Hired</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+</body>
+</html>
