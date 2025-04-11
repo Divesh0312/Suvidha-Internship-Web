@@ -1,0 +1,28 @@
+paste your mysql data base queries here 
+
+
+example:
+create table ;
+
+
+
+CREATE TABLE User (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    role VARCHAR(20) NOT NULL -- student, employee, or company
+);
+
+
+
+CREATE TABLE Rating (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    from_id INT NOT NULL,
+    to_id INT NOT NULL,
+    rating INT NOT NULL,
+    comment TEXT,
+    FOREIGN KEY (from_id) REFERENCES User(id),
+    FOREIGN KEY (to_id) REFERENCES User(id)
+);
+
+

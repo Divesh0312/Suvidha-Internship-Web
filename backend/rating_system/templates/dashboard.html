@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(120deg, #89f7fe, #66a6ff);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .dashboard-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333;
+        }
+
+        h3 {
+            margin-top: 30px;
+            color: #444;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        a {
+            color: #66a6ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #3e79c9;
+        }
+
+        .logout {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+
+        .user-item, .rating-item {
+            background: #f7f7f7;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+        }
+
+        .rating-stars {
+            color: #f5a623;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .dashboard-box {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-box">
+        <div class="logout">
+            <a href="/logout">Logout</a>
+        </div>
+        <h2>Welcome {{ user.username }} ({{ user.role }})</h2>
+
+        <h3>Rate Others:</h3>
+        {% for u in others %}
+            <div class="user-item">
+                {{ u.username }} ({{ u.role }}) - <a href="/rate/{{ u.id }}">Rate</a>
+            </div>
+        {% endfor %}
+
+        <h3>Your Ratings Received:</h3>
+        {% for r in received %}
+            <div class="rating-item">
+                <span class="rating-stars">{{ r.rating }}★</span> - {{ r.comment }}
+            </div>
+        {% else %}
+            <p>No ratings received yet.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

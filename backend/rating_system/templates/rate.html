@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rate {{ to_user.username }}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: auto;
+        }
+
+        .rate-box {
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 500px;
+            margin: 2rem;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #2d3748;
+            margin: 0 0 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .error-message {
+            color: #e53e3e;
+            background: #fef5f5;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            margin: 1rem 0;
+            direction: ltr; /* Ensure stars align left-to-right */
+        }
+
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+
+        .star-rating label {
+            font-size: 2rem;
+            color: #d3d3d3; /* Gray for unselected stars */
+            cursor: pointer;
+            transition: color 0.2s;
+            margin: 0 0.2rem;
+        }
+
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input[type="radio"]:checked ~ label {
+            color: #ffd700; /* Gold for selected/hovered stars */
+        }
+
+        /* Reverse the order visually but maintain input order for correct value */
+        .star-rating label {
+            order: calc(6 - var(--order));
+        }
+
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            resize: vertical;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        textarea:focus {
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background: #4299e1;
+            border: none;
+            border-radius: 0.5rem;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #3182ce;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #4299e1;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: #2b6cb0;
+        }
+
+        @media (max-width: 600px) {
+            .rate-box {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .star-rating label {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="rate-box">
+        <h2>Rate {{ to_user.username }} ({{ to_user.role }})</h2>
+        {% if error %}
+            <div class="error-message">{{ error }}</div>
+        {% endif %}
+        <form method="POST" id="rating-form">
+            <div class="star-rating">
+                <input type="radio" name="rating" id="star5" value="5" required>
+                <label for="star5" style="--order: 5;">★</label>
+                <input type="radio" name="rating" id="star4" value="4">
+                <label for="star4" style="--order: 4;">★</label>
+                <input type="radio" name="rating" id="star3" value="3">
+                <label for="star3" style="--order: 3;">★</label>
+                <input type="radio" name="rating" id="star2" value="2">
+                <label for="star2" style="--order: 2;">★</label>
+                <input type="radio" name="rating" id="star1" value="1">
+                <label for="star1" style="--order: 1;">★</label>
+            </div>
+            <label for="comment">Comment:</label>
+            <textarea name="comment" id="comment" placeholder="Write your feedback..." rows="5"></textarea>
+            <button type="submit" class="submit-btn">Submit Rating</button>
+        </form>
+        <a href="/dashboard" class="back-link">Back to Dashboard</a>
+    </div>
+
+    <script>
+        // Add interactivity for star rating
+        document.querySelectorAll('.star-rating input').forEach(input => {
+            input.addEventListener('change', () => {
+                const labels = document.querySelectorAll('.star-rating label');
+                labels.forEach(label => {
+                    label.style.color = '#d3d3d3'; // Reset all stars
+                });
+                const selectedValue = input.value;
+                document.querySelectorAll('.star-rating input').forEach(inp => {
+                    if (inp.value <= selectedValue) {
+                        document.querySelector(`label[for=${inp.id}]`).style.color = '#ffd700';
+                    }
+                });
+            });
+        });
+
+        // Optional: Add a subtle animation on form submission
+        document.getElementById('rating-form').addEventListener('submit', function(e) {
+            const submitBtn = document.querySelector('.submit-btn');
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            setTimeout(() => {
+                submitBtn.textContent = 'Submit Rating';
+                submitBtn.disabled = false;
+            }, 2000); // Simulate submission delay
+        });
+    </script>
+</body>
+</html>
