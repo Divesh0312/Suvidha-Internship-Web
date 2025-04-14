@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internship Listings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>🎯 Internship Listings</h1>
+    </header>
+
+    <div class="container">
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search by role or company">
+            <button onclick="filterInternships()">Search</button>
+        </div>
+
+        <!-- Filters and Internship List -->
+        <div class="filter-block">
+            <!-- Filters Sidebar -->
+            <div class="filter-sidebar">
+                <label for="location">Location:</label>
+                <select id="location">
+                    <option value="">All Locations</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Remote">Remote</option>
+                </select>
+
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option value="">All Categories</option>
+                    <option value="Tech">Tech</option>
+                    <option value="Design">Design</option>
+                    <option value="Writing">Writing</option>
+                </select>
+
+                <label for="duration">Duration:</label>
+                <select id="duration">
+                    <option value="">Any Duration</option>
+                    <option value="1">1 month</option>
+                    <option value="2">2 months</option>
+                    <option value="3">3 months</option>
+                    <option value="6">6 months</option>
+                </select>
+
+                <label for="stipend">Stipend:</label>
+                <select id="stipend">
+                    <option value="">Any Stipend</option>
+                    <option value="5000">More than ₹5,000</option>
+                    <option value="10000">More than ₹10,000</option>
+                    <option value="15000">More than ₹15,000</option>
+                </select>
+
+                <label for="sort">Sort By:</label>
+                <select id="sort">
+                    <option value="recent">Most Recent</option>
+                    <option value="stipend">Highest Stipend</option>
+                </select>
+
+                <!-- Apply Filters Button -->
+                <button onclick="filterInternships()">Apply Filters</button>
+            </div>
+
+            <!-- Internship List -->
+            <div class="internship-list" id="internshipList"></div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        const internships = [
+            {
+                title: "Web Development Intern",
+                company: "TechNova",
+                location: "Remote",
+                duration: 3,
+                stipend: 10000,
+                category: "Tech",
+                startDate: "May 15, 2025",
+                postedDaysAgo: 3
+            },
+            {
+                title: "Data Science Intern",
+                company: "DataMart",
+                location: "Bangalore",
+                duration: 6,
+                stipend: 15000,
+                category: "Tech",
+                startDate: "June 1, 2025",
+                postedDaysAgo: 1
+            },
+            {
+                title: "Graphic Design Intern",
+                company: "Creatify",
+                location: "Delhi",
+                duration: 2,
+                stipend: 8000,
+                category: "Design",
+                startDate: "April 25, 2025",
+                postedDaysAgo: 7
+            },
+            {
+                title: "Content Writing Intern",
+                company: "InkWell",
+                location: "Remote",
+                duration: 1,
+                stipend: 5000,
+                category: "Writing",
+                startDate: "May 10, 2025",
+                postedDaysAgo: 2
+            },
+            {
+                title: "App Developer Intern",
+                company: "Mobiz",
+                location: "Bangalore",
+                duration: 3,
+                stipend: 12000,
+                category: "Tech",
+                startDate: "May 18, 2025",
+                postedDaysAgo: 5
+            }
+        ];
+
+        function loadInternships(data) {
+            const list = document.getElementById("internshipList");
+            list.innerHTML = data.length ? "" : "<p>No internships found.</p>";
+
+            data.forEach(({ title, company, location, duration, stipend, category, startDate, postedDaysAgo }) => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `
+                    <h3>${title}</h3>
+                    <p><strong>Company:</strong> ${company}</p>
+                    <p><span class="sticker">📍</span><strong>Location:</strong> ${location}</p>
+                    <p><span class="sticker">🧩</span><strong>Category:</strong> ${category}</p>
+                    <p><span class="sticker">⏳</span><strong>Duration:</strong> ${duration} month(s)</p>
+                    <p><span class="sticker">💰</span><strong>Stipend:</strong> ₹${stipend}/month</p>
+                    <p><span class="sticker">📅</span><strong>Start Date:</strong> ${startDate}</p>
+                    <p><span class="sticker">🕓</span><strong>Posted:</strong> ${postedDaysAgo} day(s) ago</p>
+                    <button class="apply-btn">Apply Now</button>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function filterInternships() {
+            const keyword = document.getElementById("search").value.toLowerCase();
+            const location = document.getElementById("location").value;
+            const duration = document.getElementById("duration").value;
+            const stipend = document.getElementById("stipend").value;
+            const category = document.getElementById("category").value;
+            const sort = document.getElementById("sort").value;
+
+            let results = internships.filter(i =>
+                (i.title.toLowerCase().includes(keyword) || i.company.toLowerCase().includes(keyword)) &&
+                (location === "" || i.location === location) &&
+                (duration === "" || i.duration === parseInt(duration)) &&
+                (stipend === "" || i.stipend >= parseInt(stipend)) &&
+                (category === "" || i.category === category)
+            );
+
+            if (sort === "stipend") {
+                results.sort((a, b) => b.stipend - a.stipend);
+            } else {
+                results.sort((a, b) => a.postedDaysAgo - b.postedDaysAgo);
+            }
+
+            loadInternships(results);
+        }
+
+        window.onload = () => loadInternships(internships);
+    </script>
+
+</body>
+
+</html>
