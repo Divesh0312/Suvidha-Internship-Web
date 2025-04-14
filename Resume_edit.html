@@ -1,0 +1,326 @@
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Resume - Portal</title>
+    <link rel="stylesheet" href="Resume_edit.css">
+</head>
+<body>
+    <div class="loading-screen" id="loading-screen">
+        <div class="loader"></div>
+        <p>Loading your resume...</p>
+    </div>
+    
+    <div class="container">
+        <header>
+            <div class="logo-area">
+                <i class="fas fa-file-alt logo-icon"></i>
+                <h1>Resume Portal</h1>
+            </div>
+            <div class="header-buttons">
+                <button class="btn-primary"><i class="fas fa-tachometer-alt"></i> Dashboard</button>
+                <button class="btn-secondary"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </header>
+        
+        <div class="resume-actions">
+            <div class="resume-status">
+                <span class="status-indicator">Last edited: <span id="last-edited">Today</span></span>
+                <span class="completion-status">Profile Completion: <span id="completion-percentage">80%</span></span>
+            </div>
+            <div class="action-buttons">
+                <button class="btn-outline" id="preview-resume"><i class="fas fa-eye"></i> Preview</button>
+                <button class="btn-outline" id="download-resume"><i class="fas fa-download"></i> Download PDF</button>
+            </div>
+        </div>
+        
+        <div class="resume-card">
+            <div class="profile-section">
+                <div class="profile-image-container">
+                    <div class="profile-image" id="profile-image">
+                        <span>Photo</span>
+                        <input type="file" id="photo-upload" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="profile-image-overlay">
+                        <i class="fas fa-camera"></i>
+                        <span>Change Photo</span>
+                    </div>
+                </div>
+                <div class="profile-info">
+                    <div class="editable-field headline" id="full-name" contenteditable="true">Om Surve</div>
+                    <div class="editable-field subheadline" id="course-year" contenteditable="true">EXCS Engineering | 3rd Year</div>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div class="editable-field" id="email" contenteditable="true">omsurve310704@outlook.com</div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div class="editable-field" id="phone" contenteditable="true">+919619289055</div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="editable-field" id="location" contenteditable="true">Mumbai, Maharashtra</div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <div class="editable-field" id="linkedin" contenteditable="true">linkedin.com/in/omsurve31</div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <div class="editable-field" id="github" contenteditable="true">github.com/omsurve31</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="about-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-user"></i> About Me</h3>
+                </div>
+                <div class="about-content">
+                    <div class="editable-field paragraph" id="about-me" contenteditable="true">Technical Team Member, Google Developer Groups VIT | Frontend, Web Design, Event Management, Mobile Applications | Student at Vidyalankar Institute of Technology, Wadala.</div>
+                </div>
+            </div>
+            
+            <div class="section" id="education-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-graduation-cap"></i> Education</h3>
+                    <button class="add-button" id="add-education"><i class="fas fa-plus"></i> Add Education</button>
+                </div>
+                
+                <div class="education-item">
+                    <div class="editable-field" contenteditable="true">B.Tech in Electronics and Computer Engineering</div>
+                    <div class="education-meta">
+                        <div class="editable-field" contenteditable="true">VIT Engineering College</div>
+                        <div class="editable-field" contenteditable="true">2022 - 2026</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">CGPA: 8.5/10</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+                
+                <div class="education-item">
+                    <div class="editable-field" contenteditable="true">Higher Secondary Education</div>
+                    <div class="education-meta">
+                        <div class="editable-field" contenteditable="true">Higher Secondary School</div>
+                        <div class="editable-field" contenteditable="true">2020 - 2021</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">Percentage: 92%</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="experience-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-briefcase"></i> Experience</h3>
+                    <button class="add-button" id="add-experience"><i class="fas fa-plus"></i> Add Experience</button>
+                </div>
+                
+                               
+                <div class="experience-item">
+                    <div class="editable-field" contenteditable="true">Technical Team Member</div>
+                    <div class="experience-meta">
+                        <div class="editable-field" contenteditable="true">GDG VIT</div>
+                        <div class="editable-field" contenteditable="true">SEPT 2024 - Present</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true"></div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="projects-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-code"></i> Projects</h3>
+                    <button class="add-button" id="add-project"><i class="fas fa-plus"></i> Add Project</button>
+                </div>
+                
+                <div class="project-item">
+                    <div class="editable-field" contenteditable="true">Stock Market Prediction Systems using LSTM</div>
+                    <div class="project-meta">
+                        <div class="editable-field" contenteditable="true">College Project</div>
+                        <div class="editable-field" contenteditable="true">Feb 2025 - Apr 2025</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">This project predicts stock prices using an LSTM neural network, a deep learning model ideal for time-series data. It fetches historical stock data (Yahoo Finance), preprocesses it, and trains a 3-layer LSTM to forecast future prices. Includes dropout regularization and early stopping. Predictions are visualized against actual prices for performance evaluation. Built with Python/TensorFlow.</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <div class="editable-field" contenteditable="true">Foodie Website</div>
+                    <div class="project-meta">
+                        <div class="editable-field" contenteditable="true">Personal Project</div>
+                        <div class="editable-field" contenteditable="true">Jun 24 - Aug 24</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">a basic online food delivery website, focused on food items.</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="skills-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-tools"></i> Skills</h3>
+                    <button class="add-button" id="add-skill"><i class="fas fa-plus"></i> Add Skill</button>
+                </div>
+                
+                <div class="skills-list">
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">HTML/CSS</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">JavaScript</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">React.js</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">Python</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">Java</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">Git</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                    <div class="skill-tag">
+                        <span class="editable-field" contenteditable="true">Problem Solving</span>
+                        <button class="remove-skill">×</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="achievements-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-trophy"></i> Achievements</h3>
+                    <button class="add-button" id="add-achievement"><i class="fas fa-plus"></i> Add Achievement</button>
+                </div>
+                
+                <ul class="achievements-list">
+                    <li>
+                        <div class="editable-field" contenteditable="true">Winner of National Coding Competition 2023</div>
+                        <button class="remove-achievement">×</button>
+                    </li>
+                    <li>
+                        <div class="editable-field" contenteditable="true">3rd Prize in College Hackathon 2022</div>
+                        <button class="remove-achievement">×</button>
+                    </li>
+                    <li>
+                        <div class="editable-field" contenteditable="true">5-star rating on HackerRank in Problem Solving</div>
+                        <button class="remove-achievement">×</button>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="section" id="certifications-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                    <button class="add-button" id="add-certification"><i class="fas fa-plus"></i> Add Certification</button>
+                </div>
+                
+                <div class="certification-item">
+                    <div class="editable-field" contenteditable="true">Web Development Bootcamp</div>
+                    <div class="certification-meta">
+                        <div class="editable-field" contenteditable="true">Udemy</div>
+                        <div class="editable-field" contenteditable="true">June 2023</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">Credential ID: UC-123456</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section" id="languages-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-language"></i> Languages</h3>
+                    <button class="add-button" id="add-language"><i class="fas fa-plus"></i> Add Language</button>
+                </div>
+                
+                <div class="languages-list">
+                    <div class="language-item">
+                        <div class="language-name">
+                            <span class="editable-field" contenteditable="true">English</span>
+                        </div>
+                        <div class="language-level">
+                            <span class="editable-field" contenteditable="true">Professional</span>
+                        </div>
+                        <div class="item-actions">
+                            <button class="delete-button">Delete</button>
+                        </div>
+                    </div>
+                    <div class="language-item">
+                        <div class="language-name">
+                            <span class="editable-field" contenteditable="true">Hindi</span>
+                        </div>
+                        <div class="language-level">
+                            <span class="editable-field" contenteditable="true">Native</span>
+                        </div>
+                        <div class="item-actions">
+                            <button class="delete-button">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="save-section">
+                <div class="save-options">
+                    <button id="save-resume" class="save-button"><i class="fas fa-save"></i> Save Resume</button>
+                    <button id="share-resume" class="share-button"><i class="fas fa-share-alt"></i> Share</button>
+                </div>
+                <div class="completion-tips">
+                    <div class="tip-item">
+                        <i class="fas fa-lightbulb tip-icon"></i>
+                        <span>Tip: Add at least 5 relevant skills to increase visibility to recruiters</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="toast" id="toast">
+            <div class="toast-content">
+                <i class="fas fa-check-circle toast-icon"></i>
+                <div class="toast-message">Resume saved successfully!</div>
+            </div>
+            <div class="toast-progress"></div>
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Resume Portal</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#">Help</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; 2026 Resume Portal. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="Resume_edit.js"></script>
+</body>
+</html>
