@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Suvidha Dashboard</title>
   <link rel="stylesheet" href="stu_dash.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
   <header>
@@ -15,13 +16,15 @@
       <a href="#">Offer</a>
       <a href="#">Jobs</a>
     </nav>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
   </header>
 
   <div class="container">
     <aside class="sidebar">
       <h3>To do list (2)</h3>
       <div class="todo-item">
-        <!-- <img src="https://via.placeholder.com/20" alt="App Icon" class="app-icon"> -->
         <a href="#">Download our App</a>
         <p>To receive invitations and updates from employers</p>
       </div>
@@ -42,19 +45,16 @@
         <h2>Trending on Suvidha 🔥</h2>
         <div class="card-container">
           <div class="card">
-            <!-- <img src="https://via.placeholder.com/100" alt="Certification"> -->
             <h3>Master in-demand skills!</h3>
             <p>Get accredited certification and boost your resume.</p>
             <a href="#" class="know-more">Know more</a>
           </div>
           <div class="card">
-            <!-- <img src="https://via.placeholder.com/100" alt="Special Offer"> -->
             <h3>Special offer for your college</h3>
             <p>Get FLAT 80% OFF on all online trainings</p>
             <a href="#" class="know-more">Know more</a>
           </div>
           <div class="card">
-            <!-- <img src="https://via.placeholder.com/100" alt="Internship Premier"> -->
             <h3>INTERNSHIP PREMIER LEAGUE 💼</h3>
             <p>Play big - Win even Bigger <br> Earn stipend to 2.4 lacs <br> 65,000+ internships</p>
             <a href="#" class="know-more">Participate now</a>
@@ -70,49 +70,67 @@
   </div>
 
   <footer>
-    <div class="footer-section">
-      <h4>Internships by places</h4>
-      <ul>
-        <li>Internship in India</li>
-        <li>Internship in Delhi</li>
-        <li>Internship in Bangalore</li>
-      </ul>
-    </div>
-    <div class="footer-section">
-      <h4>Internship by Stream</h4>
-      <ul>
-        <li>Computer Science Internship</li>
-        <li>Electronics Internship</li>
-        <li>Marketing Internship</li>
-      </ul>
-    </div>
-    <div class="footer-section">
-      <h4>Jobs by Places</h4>
-      <ul>
-        <li>Jobs in Delhi</li>
-        <li>Jobs in Mumbai</li>
-        <li>Jobs in Bangalore</li>
-      </ul>
-    </div>
-    <div class="footer-section">
-      <h4>Jobs by Stream</h4>
-      <ul>
-        <li>Marketing jobs</li>
-        <li>Content writing jobs</li>
-        <li>Web development jobs</li>
-      </ul>
-    </div>
-    <div class="footer-section">
-      <h4>Placement Guarantee Courses</h4>
-      <ul>
-        <li>Full Stack Development</li>
-        <li>Data Science</li>
-        <li>Digital Marketing</li>
-      </ul>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Internships by places</h4>
+        <ul>
+          <li>Internship in India</li>
+          <li>Internship in Delhi</li>
+          <li>Internship in Bangalore</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Internship by Stream</h4>
+        <ul>
+          <li>Computer Science Internship</li>
+          <li>Electronics Internship</li>
+          <li>Marketing Internship</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Jobs by Places</h4>
+        <ul>
+          <li>Jobs in Delhi</li>
+          <li>Jobs in Mumbai</li>
+          <li>Jobs in Bangalore</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Jobs by Stream</h4>
+        <ul>
+          <li>Marketing jobs</li>
+          <li>Content writing jobs</li>
+          <li>Web development jobs</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Placement Guarantee Courses</h4>
+        <ul>
+          <li>Full Stack Development</li>
+          <li>Data Science</li>
+          <li>Digital Marketing</li>
+        </ul>
+      </div>
     </div>
     <div class="footer-bottom">
       <p>© Copyright 2025 Suvidha (Scholiverse Educare Private Limited)</p>
     </div>
   </footer>
+
+  <script>
+    document.querySelector('.menu-toggle').addEventListener('click', function() {
+      document.querySelector('.main-nav').classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const isClickInsideNav = event.target.closest('.main-nav');
+      const isClickOnToggle = event.target.closest('.menu-toggle');
+      
+      if (!isClickInsideNav && !isClickOnToggle && document.querySelector('.main-nav').classList.contains('active')) {
+        document.querySelector('.main-nav').classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
