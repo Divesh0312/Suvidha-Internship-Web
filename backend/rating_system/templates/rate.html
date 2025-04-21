@@ -9,7 +9,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            background: linear-gradient(135deg, #fff9c4, #ffe082, #ffd54f);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -100,19 +100,19 @@
         .submit-btn {
             width: 100%;
             padding: 0.75rem;
-            background: #4299e1;
+            background: #ffd700;
             border: none;
             border-radius: 0.5rem;
-            color: #ffffff;
+            color: #000000;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 400;
             cursor: pointer;
             transition: background 0.3s, transform 0.2s;
             margin-top: 1rem;
         }
 
         .submit-btn:hover {
-            background: #3182ce;
+            background: #e4c308;
             transform: translateY(-2px);
         }
 
@@ -158,15 +158,15 @@
         {% endif %}
         <form method="POST" id="rating-form">
             <div class="star-rating">
-                <input type="radio" name="rating" id="star1" value="1">
+                <input type="radio" name="rating" id="star1" value="5">
                 <label for="star1" style="--order: 1;">★</label>
-                <input type="radio" name="rating" id="star2" value="2">
+                <input type="radio" name="rating" id="star2" value="4">
                 <label for="star2" style="--order: 2;">★</label>
                 <input type="radio" name="rating" id="star3" value="3">
                 <label for="star3" style="--order: 3;">★</label>
-                <input type="radio" name="rating" id="star4" value="4">
+                <input type="radio" name="rating" id="star4" value="2">
                 <label for="star4" style="--order: 4;">★</label>
-                <input type="radio" name="rating" id="star5" value="5" required>
+                <input type="radio" name="rating" id="star5" value="1" required>
                 <label for="star5" style="--order: 5;">★</label>
             </div>
             <label for="comment">Comment:</label>
@@ -186,7 +186,7 @@
                 });
                 const selectedValue = input.value;
                 document.querySelectorAll('.star-rating input').forEach(inp => {
-                    if (inp.value >= selectedValue) {
+                    if (inp.value <= selectedValue) {
                         document.querySelector(`label[for=${inp.id}]`).style.color = '#ffd700';
                     }
                 });

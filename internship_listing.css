@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #fffef7;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #fff176;
+    color: #333;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.search-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #fff9c4;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-bar button {
+    background-color: #fff176;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    padding: 0 20px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #ffee58;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter {
+    flex: 1;
+    min-width: 180px;
+}
+
+.filter select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #fff9c4;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+}
+
+.results-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.sort-by select {
+    padding: 8px;
+    border: 1px solid #fff9c4;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.listings {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.listing-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    padding: 15px;
+    border-bottom: 1px solid #fffde7;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.company-logo {
+    width: 50px;
+    height: 50px;
+    background-color: #fffde7;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.company-logo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.card-title h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.company-name {
+    color: #666;
+    font-size: 14px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.tag {
+    background-color: #fffde7;
+    color: #bba217;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.info-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.card-footer {
+    padding: 15px;
+    border-top: 1px solid #fffde7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date {
+    color: #666;
+    font-size: 14px;
+}
+
+.apply-btn {
+    background-color: #fff176;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.apply-btn:hover {
+    background-color: #ffee58;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 5px;
+}
+
+.page-btn {
+    padding: 8px 12px;
+    border: 1px solid #fff9c4;
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.page-btn.active {
+    background-color: #fff176;
+    color: #333;
+    border-color: #fff176;
+}
+
+.page-btn:hover:not(.active) {
+    background-color: #fffde7;
+}
+
+@media screen and (max-width: 768px) {
+    .listings {
+        grid-template-columns: 1fr;
+    }
+    .filters {
+        flex-direction: column;
+    }
+    .filter {
+        width: 100%;
+    }
+}

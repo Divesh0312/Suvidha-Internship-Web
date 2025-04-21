@@ -1,0 +1,203 @@
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: #fff9db; /* Soft pastel yellow */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: #f7c948; /* Bright golden-yellow for header */
+    color: white;
+    padding: 1.2rem 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+header h1 {
+    margin: 0;
+}
+
+/* Container Styles */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* Search Bar Styles */
+.search-bar {
+    padding: 1rem;
+    background-color: white; /* White background for contrast */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd; /* Light border for clean look */
+    border-radius: 8px;
+    width: 100%;
+}
+
+.search-bar button {
+    background-color: #2ecc71; /* A vibrant green for CTA button */
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.search-bar button:hover {
+    background-color: #27ae60; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.search-bar button:focus {
+    box-shadow: 0 0 6px rgba(39, 174, 96, 0.2); /* Focus effect */
+}
+
+/* Filter Block Styles */
+.filter-block {
+    margin-top: 1rem; /* Add space between the search bar and filter block */
+    padding: 1.5rem;
+    background-color: white; /* White background for filters block */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Subtle shadow for better visibility */
+    display: flex;
+    gap: 2rem;
+}
+
+.filter-block:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+}
+
+.filter-sidebar {
+    flex-basis: 250px; /* Fixed width for sidebar */
+    display: flex;
+    flex-direction: column; /* Stack filters vertically */
+}
+
+.filter-sidebar label {
+    font-weight: bold; /* Make labels stand out */
+    color: #555; /* Darker text color for readability */
+}
+
+.filter-sidebar select {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd; /* Light border for cleaner look */
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.filter-sidebar select:hover {
+    border-color: #ccc; /* Lighter border on hover */
+}
+
+.filter-sidebar button {
+    background-color: #f7c948; /* Golden-yellow button to match theme */
+    color: white;
+    border: none;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
+    margin-top: auto; /* Push button to the bottom */
+}
+
+.filter-sidebar button:hover {
+    background-color: #f4b400; /* Slightly darker yellow on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.filter-sidebar button:focus {
+    box-shadow: 0 0 6px rgba(247, 201, 72, 0.2); /* Focus effect */
+}
+
+/* Internship List Styles */
+.internship-list {
+    flex-grow: 1; /* Fill available space */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background-color: white; /* White card for contrast against yellow background */
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, .08);
+    transition: transform 0.2s; /* Transition effect for hover */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Enhanced shadow on hover */
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #f7c948; /* Golden-yellow internship name */
+    margin-bottom: 0.7rem;
+}
+
+.card p {
+    margin: 0.4rem 0;
+    line-height: 1.5;
+    color: #555;
+}
+
+.sticker {
+    margin-right: 0.5rem;
+    font-size: 1.1rem;
+    color: #777;
+}
+
+/* Apply Button Styles */
+.apply-btn {
+    margin-top: 1rem;
+    background-color: #f7c948; /* Golden-yellow button */
+    color: white;
+    padding: 0.7rem 1.4rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.apply-btn:hover {
+    background-color: #f4b400; /* Slightly darker yellow on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+.apply-btn:focus {
+    box-shadow: 0 0 6px rgba(247, 201, 72, 0.2); /* Focus effect */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .filter-block {
+        flex-direction: column; /* Stack items on smaller screens */
+    }
+
+    .filter-sidebar {
+        flex-basis: auto; /* Adjust width on smaller screens */
+    }
+}
