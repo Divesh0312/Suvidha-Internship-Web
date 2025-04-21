@@ -28,7 +28,8 @@ class Rating(db.Model):
     rating = db.Column(db.Integer, nullable=False)
     comment = db.Column(db.Text)
 
-##------Uploads for resume, certificates and projects-----## 
+##------Uploads for resume, certificates and projects-----##   
+
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
