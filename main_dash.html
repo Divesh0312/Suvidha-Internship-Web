@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Internship Dashboard</title>
+  <link rel="stylesheet" href="main_dash.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<header>
+  <div class="logo">Suvidha Foundation </div>
+  <nav>
+    <input type="text" placeholder="Search">
+    <a href="index.html">Login</a>
+    <a href="stu_signup.html" style="border: none;"><button>Student Sign-up</button></a>
+    <a href="employee_registration.html" style="border: none;"><button>Employer Sign-up</button></a>
+    <a href="TPO_Signup.html" style="border: none;"><button>Tpo Sign-up</button></a>
+  </nav>
+</header>
+
+
+
+<section class="internships">
+  <h2>Latest Internships</h2>
+  <div class="categories">
+    <button class="category-btn">Big brands</button>
+    <button class="category-btn">Work from home</button>
+    <button class="category-btn">Part-time</button>
+    <button class="category-btn">MBA</button>
+    <button class="category-btn">Engineering</button>
+    <button class="category-btn">Media</button>
+    <button class="category-btn">Design</button>
+    <button class="category-btn">Data Science</button>
+  </div>
+
+  <div class="internship-list">
+    <div class="internship-card">
+      <div class="badge">📈 Actively hiring</div>
+      <h3>Anchoring</h3>
+      <p class="company">Marpu Foundation</p>
+      <p>📍 Work From Home</p>
+      <p>💰 ₹1,000 - 2,000 /month</p>
+      <p>📅 2 Weeks</p>
+      <div class="actions">
+        <span class="tag">Internship</span>
+        <a href="#">View details &gt;</a>
+      </div>
+    </div>
+
+    <div class="internship-card">
+      <div class="badge">📈 Actively hiring</div>
+      <h3>Hosting</h3>
+      <p class="company">Marpu Foundation</p>
+      <p>📍 Work From Home</p>
+      <p>💰 ₹1,000 - 2,000 /week</p>
+      <p>📅 1 Week</p>
+      <div class="actions">
+        <span class="tag">Internship</span>
+        <a href="#">View details &gt;</a>
+      </div>
+    </div>
+
+    <div class="internship-card">
+      <div class="badge">📈 Actively hiring</div>
+      <h3>Blogging</h3>
+      <p class="company">Marpu Foundation</p>
+      <p>📍 Work From Home</p>
+      <p>💰 Unpaid</p>
+      <p>📅 1 Month</p>
+      <div class="actions">
+        <span class="tag">Internship</span>
+        <a href="#">View details &gt;</a>
+      </div>
+    </div>
+
+    <div class="internship-card">
+      <div class="badge">📈 Actively hiring</div>
+      <h3>Creative Writing</h3>
+      <p class="company">Marpu Foundation</p>
+      <p>📍 Work From Home</p>
+      <p>💰 Unpaid</p>
+      <p>📅 1 Month</p>
+      <div class="actions">
+        <span class="tag">Internship</span>
+        <a href="#">View details &gt;</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="stats">
+  <div class="card">
+    <h2>150+</h2>
+    <p>Companies Hiring</p>
+  </div>
+  <div class="card">
+    <h2>300+</h2>
+    <p>New Openings</p>
+  </div>
+  <div class="card">
+    <h2>5000+</h2>
+    <p>Active Students</p>
+  </div>
+  <div class="card">
+    <h2>4.8/5</h2>
+    <p>Student Reviews</p>
+  </div>
+</section>
+<section class="testimonials">
+  <h2>What Our Users Say</h2>
+  <div class="testimonial-container">
+    <div class="testimonial-card">
+      <h3>Got hired for 4 internships</h3>
+      <p>Suvidha Foundation helped me to get me 4 internship in multiple Domains and I highly recommend Suvidha Foundation for students who are looking for internships and jobs</p>
+      <div class="testimonial-footer">
+        <img src="https://img.freepik.com/premium-vector/avatar-profile-icon-flat-style-female-user-profile-vector-illustration-isolated-background-women-profile-sign-business-concept_157943-38866.jpg" alt="Shreya Pawar" class="avatar">
+        <div>
+          <strong>Shreya Pawar</strong><br>
+          ⭐⭐⭐⭐☆
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <h3>Got my First Internship</h3>
+      <p>I landed my First remote Internship through Suvidha Foundation. This internship gave me lot of experience and skills. </p>
+      <div class="testimonial-footer">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmGr4Gi6HEXTyxgU42dZiKKrkfetcVBLcf8Q&s" alt="Yaswanth Mandapati" class="avatar">
+        <div>
+          <strong>Yaswanth Mandapati</strong><br>
+          ⭐⭐⭐⭐⭐
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  function openTab(tabId) {
+  const tabs = document.querySelectorAll(".tab-content");
+  const buttons = document.querySelectorAll(".tab-button");
+
+  tabs.forEach(tab => {
+    tab.style.display = "none";
+  });
+
+  document.getElementById(tabId).style.display = "block";
+
+  buttons.forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  event.target.classList.add("active");
+}
+
+</script>
+</body>
+</html>
