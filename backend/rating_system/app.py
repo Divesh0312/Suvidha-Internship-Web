@@ -33,6 +33,31 @@ class Rating(db.Model):
     to_user = db.relationship('User', foreign_keys=[to_id])
 
 
+# ---------This model stores student internship applications ---------#
+from sqlalchemy.sql import text
+
+class Application(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    internship_id = db.Column(db.Integer, nullable=False)
+    applied_on = db.Column(db.TIMESTAMP, server_default=text('CURRENT_TIMESTAMP'))
+
+
+# ----- This model stores extended profile information for a student after registration ----- #
+class StudentDetails(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False, unique=True)
+    full_name = db.Column(db.String(100))
+    phone = db.Column(db.String(20))
+    email = db.Column(db.String(100))
+    college = db.Column(db.String(100))
+    branch = db.Column(db.String(100))
+    year = db.Column(db.String(20))
+    linkedin = db.Column(db.String(255))
+    github = db.Column(db.String(255))
+    skills = db.Column(db.Text)
+
+
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), unique=True, nullable=False)
@@ -207,6 +232,77 @@ def rate(to_id):
         return render_template('rate.html', to_user=to_user)
     except Exception as e:
         return redirect('/dashboard', error=f"Error loading rate page: {str(e)}")
+
+# ------ Route to save or update student profile details after registration ------ #
+@app.route('/register-details', methods=['POST'])
+def register_student_details():
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    user_id = session['user_id']
+    full_name = request.form.get('full-name')
+    phone = request.form.get('contact')
+    email = request.form.get('email')
+    college = request.form.get('college')
+    branch = request.form.get('branch')
+    year = request.form.get('year')
+    linkedin = request.form.get('linkedin')
+    github = request.form.get('github')
+    skills = request.form.get('skills')
+
+    try:
+        details = StudentDetails.query.filter_by(user_id=user_id).first()
+        if details:
+            # update existing
+            details.full_name = full_name
+            details.phone = phone
+            details.email = email
+            details.college = college
+            details.branch = branch
+            details.year = year
+            details.linkedin = linkedin
+            details.github = github
+            details.skills = skills
+        else:
+            # new entry
+            new_details = StudentDetails(
+                user_id=user_id,
+                full_name=full_name,
+                phone=phone,
+                email=email,
+                college=college,
+                branch=branch,
+                year=year,
+                linkedin=linkedin,
+                github=github,
+                skills=skills
+            )
+            db.session.add(new_details)
+
+        db.session.commit()
+        return redirect('/dashboard')
+    except Exception as e:
+        db.session.rollback()
+        return f"Error saving details: {str(e)}"
+
+# ----- Route to handle "Apply Now" button click for internships ----- #
+@app.route('/apply/<int:internship_id>', methods=['GET'])
+def apply_to_internship(internship_id):
+    if 'user_id' not in session:
+        return redirect('/login')
+
+    user_id = session['user_id']
+    existing = Application.query.filter_by(user_id=user_id, internship_id=internship_id).first()
+
+    if existing:
+        return "Already applied!"
+    
+    new_app = Application(user_id=user_id, internship_id=internship_id)
+    db.session.add(new_app)
+    db.session.commit()
+    return "Application submitted successfully!"
+
+
 
 @app.route('/logout')
 def logout():
