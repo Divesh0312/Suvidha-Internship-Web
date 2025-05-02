@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suvidha Foundation | Your Applications</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <img src="C:\Users\HP\Downloads\suvidha\suvidha logo.jpg" alt="Suvidha Foundation Logo">
+          <h2>Suvidha Foundation</h2>
+        </div>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="#" class="menu-item">
+          <i class="fas fa-th-large"></i> Dashboard
+        </a>
+        <a href="#" class="menu-item active">
+          <i class="fas fa-briefcase"></i> My Applications
+        </a>
+        <!-- <a href="#" class="menu-item">
+          <i class="fas fa-search"></i> Browse Projects
+        </a> -->
+        <!-- <a href="#" class="menu-item">
+          <i class="fas fa-star"></i> Saved Opportunities
+        </a> -->
+        <a href="#" class="menu-item">
+          <i class="fas fa-file-alt"></i> My Profile
+        </a>
+        <!-- <a href="#" class="menu-item">
+          <i class="fas fa-chart-line"></i> Impact Reports
+        </a> -->
+        <!-- <a href="#" class="menu-item">
+          <i class="fas fa-bell"></i> Notifications
+        </a> -->
+        <!-- <a href="#" class="menu-item">
+          <i class="fas fa-cog"></i> Settings
+        </a> -->
+        <a href="#" class="menu-item">
+          <i class="fas fa-question-circle"></i> Help & Support
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Top Navbar for mobile -->
+      <nav class="top-navbar">
+        <div class="navbar-left">
+          <button class="menu-toggle" id="menu-toggle">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="navbar-logo">
+            <img src="C:\Users\HP\Downloads\suvidha\suvidha logo.jpg" alt="Suvidha Foundation Logo">
+          </div>
+        </div>
+        <div class="navbar-right">
+          <ul class="nav-links">
+            <li><a href="#">Programs <span class="caret">▾</span></a></li>
+            <li><a href="#">Donate <span class="offer">NEW</span> <span class="caret">▾</span></a></li>
+            <li><a href="#">About Us <span class="caret">▾</span></a></li>
+          </ul>
+          <div class="user-actions">
+            <button class="icon-btn">
+              <i class="fas fa-bell"></i>
+            </button>
+            <button class="icon-btn">
+              <i class="fas fa-comment"></i>
+            </button>
+            <button class="profile-btn">
+              S <span class="caret">▾</span>
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="header-title">
+          <h1>My Applications</h1>
+          <p>Track and manage all your volunteer applications</p>
+        </div>
+        <div class="header-actions">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search applications...">
+          </div>
+          <button class="btn btn-primary" id="add-application-btn">
+            <i class="fas fa-plus"></i> Add Application
+          </button>
+        </div>
+      </div>
+
+      <!-- Dashboard Stats -->
+      <div class="dashboard-stats">
+        <div class="stat-card">
+          <div class="stat-icon icon-yellow">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <div class="stat-info">
+            <h3>12</h3>
+            <p>Total Applications</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon icon-blue">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="stat-info">
+            <h3>5</h3>
+            <p>Accepted</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon icon-red">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="stat-info">
+            <h3>7</h3>
+            <p>Pending</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <div class="tab active">All Applications</div>
+        <!-- <div class="tab">Pending</div>
+        <div class="tab">In Review</div>
+        <div class="tab">Accepted</div>
+        <div class="tab">Rejected</div> -->
+      </div>
+
+      <!-- Applications Table -->
+      <div class="applications-table">
+        <div class="table-header">
+          <h2>Recent Applications</h2>
+          <div class="table-actions">
+            <button class="btn btn-outline btn-sm">
+              <i class="fas fa-filter"></i> Filter
+            </button>
+            <button class="btn btn-outline btn-sm">
+              <i class="fas fa-download"></i> Export
+            </button>
+          </div>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>Position</th>
+                <th>Applied On</th>
+                <th>Total Volunteers</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="project-info">
+                    <div class="project-logo">E</div>
+                    <span>Education for All</span>
+                  </div>
+                </td>
+                <td>Teaching Assistant Volunteer</td>
+                <td>23 Mar' 25</td>
+                <td>48</td>
+                <td>
+                  <span class="status-badge status-applied">Applied</span>
+                </td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="icon-action" title="View Details">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="icon-action" title="Edit Application">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="icon-action" title="Delete">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="project-info">
+                    <div class="project-logo">C</div>
+                    <span>Community Health Camp</span>
+                  </div>
+                </td>
+                <td>Health Outreach Volunteer</td>
+                <td>22 Mar' 25</td>
+                <td>67</td>
+                <td>
+                  <span class="status-badge status-in-touch">In Review</span>
+                  <div class="boost-application">Boost application</div>
+                </td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="icon-action" title="View Details">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="icon-action" title="Edit Application">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="icon-action" title="Delete">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="project-info">
+                    <div class="project-logo">W</div>
+                    <span>Women Empowerment Workshop</span>
+                  </div>
+                </td>
+                <td>Event Coordinator Volunteer</td>
+                <td>19 Mar' 25</td>
+                <td>35</td>
+                <td>
+                  <span class="status-badge status-applied">Applied</span>
+                </td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="icon-action" title="View Details">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="icon-action" title="Edit Application">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button<button class="icon-action" title="Delete">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="project-info">
+                      <div class="project-logo">F</div>
+                      <span>Food Distribution Drive</span>
+                    </div>
+                  </td>
+                  <td>Distribution Volunteer</td>
+                  <td>17 Mar' 25</td>
+                  <td>45</td>
+                  <td>
+                    <span class="status-badge status-accepted">Accepted</span>
+                  </td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="icon-action" title="View Details">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="icon-action" title="Edit Application">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="icon-action" title="Delete">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="project-info">
+                      <div class="project-logo">E</div>
+                      <span>Environmental Cleanup</span>
+                    </div>
+                  </td>
+                  <td>Cleanup Volunteer</td>
+                  <td>15 Mar' 25</td>
+                  <td>32</td>
+                  <td>
+                    <span class="status-badge status-rejected">Rejected</span>
+                    <div class="missing-skill">Missing: Environmental science background</div>
+                  </td>
+                  <td>
+                    <div class="action-buttons">
+                      <button class="icon-action" title="View Details">
+                        <i class="fas fa-eye"></i>
+                      </button>
+                      <button class="icon-action" title="Edit Application">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <button class="icon-action" title="Delete">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="pagination">
+            <a href="#" class="pagination-item">
+              <i class="fas fa-chevron-left"></i>
+            </a>
+            <a href="#" class="pagination-item active">1</a>
+            <a href="#" class="pagination-item">2</a>
+            <a href="#" class="pagination-item">3</a>
+            <a href="#" class="pagination-item">
+              <i class="fas fa-chevron-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Add Application Modal -->
+    <div class="modal-backdrop" id="application-modal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3 class="modal-title">Add New Application</h3>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form id="application-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Project Name</label>
+                <select class="form-control">
+                  <option value="">Select Project</option>
+                  <option value="education">Education for All</option>
+                  <option value="health">Community Health Camp</option>
+                  <option value="women">Women Empowerment Workshop</option>
+                  <option value="food">Food Distribution Drive</option>
+                  <option value="environment">Environmental Cleanup</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Position</label>
+                <select class="form-control">
+                  <option value="">Select Position</option>
+                  <option value="teaching">Teaching Assistant</option>
+                  <option value="health">Health Outreach</option>
+                  <option value="coordinator">Event Coordinator</option>
+                  <option value="distribution">Distribution Volunteer</option>
+                  <option value="cleanup">Cleanup Volunteer</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Availability</label>
+                <select class="form-control">
+                  <option value="">Select Availability</option>
+                  <option value="weekdays">Weekdays</option>
+                  <option value="weekends">Weekends</option>
+                  <option value="both">Both</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Hours per Week</label>
+                <input type="number" class="form-control" placeholder="Enter hours">
+              </div>
+              <div class="form-group full-width">
+                <label class="form-label">Relevant Skills</label>
+                <input type="text" class="form-control" placeholder="Enter relevant skills">
+              </div>
+              <div class="form-group full-width">
+                <label class="form-label">Why do you want to volunteer for this project?</label>
+                <textarea class="form-control" placeholder="Share your motivation..."></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" id="cancel-btn">Cancel</button>
+          <button class="btn btn-primary" id="submit-btn">Submit Application</button>
+        </div>
+      </div>
+    </div>
+  
+    <script>
+      // Toggle sidebar
+      document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('sidebar').classList.toggle('active');
+      });
+      
+      // Modal functionality
+      const modalBackdrop = document.getElementById('application-modal');
+      const addBtn = document.getElementById('add-application-btn');
+      const cancelBtn = document.getElementById('cancel-btn');
+      const closeBtn = document.querySelector('.modal-close');
+      
+      addBtn.addEventListener('click', function() {
+        modalBackdrop.style.display = 'flex';
+      });
+      
+      function closeModal() {
+        modalBackdrop.style.display = 'none';
+      }
+      
+      cancelBtn.addEventListener('click', closeModal);
+      closeBtn.addEventListener('click', closeModal);
+      
+      // Close modal when clicking outside
+      modalBackdrop.addEventListener('click', function(e) {
+        if (e.target === modalBackdrop) {
+          closeModal();
+        }
+      });
+      
+      // Tab functionality
+      const tabs = document.querySelectorAll('.tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          tabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+      
+      // Form submission
+      document.getElementById('submit-btn').addEventListener('click', function() {
+        // Here you would normally handle form submission
+        alert('Application submitted successfully!');
+        closeModal();
+      });
+    </script>
+  </body>
+  </html>

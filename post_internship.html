@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Post Internship</title>
+  <link rel="stylesheet" href="employee_dash.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <ul>
+      <li class="active"><a href="employee_dash.html" style="text-decoration: none; color:black">Dashboard</a></li>
+      <li><a href="post_internship.html" style="text-decoration: none; color:black">Post Internship</a></li>
+      <li><a href="applications.html" style="text-decoration: none; color:black">Applications</a></li>
+      <li><a href="#" style="text-decoration: none; color:black">Messages</a></li>
+    </ul>
+  </aside>
+
+  <!-- Header -->
+  <header>
+    <div class="brand">
+      <!-- <img src="s_logo.png" alt="Logo" class="logo"> -->
+      <h1>Employee Dashboard</h1>
+    </div>
+    <button class="logout-btn">Logout</button>
+  </header>
+
+  <!-- Main Section -->
+  <main>
+    <h2 style="margin-bottom: 20px;">Post Internship</h2>
+
+    <!-- 🔗 Link this form to a PHP backend file (or your preferred backend) -->
+    <form action="submit_internship.php" method="POST" style="background: #fffdf3; padding: 30px; border-radius: 20px; box-shadow: 0 5px 18px rgba(249, 200, 70, 0.25);">
+      
+      <label>Primary Profile:</label><br>
+      <select name="profile" required>
+        <option value="">Select</option>
+        <option>Web Development</option>
+        <option>Graphic Design</option>
+        <option>Other</option>
+      </select><br><br>
+
+      <label>Type of Internship:</label><br>
+      <input type="text" name="type" placeholder="Eg: Remote, In-office" required><br><br>
+
+      <label>Location:</label><br>
+      <input type="text" name="location" placeholder="Enter location" required><br><br>
+
+      <label>Part-time Allowed:</label><br>
+      <select name="part_time" required>
+        <option value="">Select</option>
+        <option>Yes</option>
+        <option>No</option>
+      </select><br><br>
+
+      <label>No. of Openings:</label><br>
+      <input type="number" name="openings" placeholder="Eg: 5" required><br><br>
+
+      <label>Start Date:</label><br>
+      <input type="date" name="start_date" required><br><br>
+
+      <label>End Date:</label><br>
+      <input type="date" name="end_date" required><br><br>
+
+      <label>Minimum Duration (in months):</label><br>
+      <input type="number" name="min_duration" placeholder="Eg: 1" required><br><br>
+
+      <label>Maximum Duration (in months):</label><br>
+      <input type="number" name="max_duration" placeholder="Eg: 6" required><br><br>
+
+      <label>Intern's Responsibilities:</label><br>
+      <textarea name="responsibilities" rows="4" placeholder="List responsibilities here..." required></textarea><br><br>
+
+      <label>Skills Required:</label><br>
+      <textarea name="skills" rows="3" placeholder="Eg: HTML, CSS, JavaScript" required></textarea><br><br>
+
+      <button type="submit" class="post-btn">Post Internship</button>
+    </form>
+  </main>
+</body>
+</html>
