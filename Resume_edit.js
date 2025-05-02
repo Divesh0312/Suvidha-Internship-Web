@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     // Profile Image Upload
     const profileImage = document.getElementById('profile-image');
@@ -41,8 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         
-        // Insert before the Add button
-        educationSection.insertBefore(newEducation, this.parentNode.nextSibling);
+        // Insert after the section header
+        const sectionHeader = educationSection.querySelector('.section-header');
+        educationSection.insertBefore(newEducation, sectionHeader.nextSibling);
         addDeleteListeners();
     });
     
@@ -63,7 +65,8 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         
-        experienceSection.insertBefore(newExperience, this.parentNode.nextSibling);
+        const sectionHeader = experienceSection.querySelector('.section-header');
+        experienceSection.insertBefore(newExperience, sectionHeader.nextSibling);
         addDeleteListeners();
     });
     
@@ -84,7 +87,30 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
         
-        projectsSection.insertBefore(newProject, this.parentNode.nextSibling);
+        const sectionHeader = projectsSection.querySelector('.section-header');
+        projectsSection.insertBefore(newProject, sectionHeader.nextSibling);
+        addDeleteListeners();
+    });
+    
+    // Add new certification item
+    document.getElementById('add-certification').addEventListener('click', function() {
+        const certificationsSection = document.getElementById('certifications-section');
+        const newCertification = document.createElement('div');
+        newCertification.className = 'certification-item';
+        newCertification.innerHTML = `
+            <div class="editable-field" contenteditable="true">Certification Name</div>
+            <div class="certification-meta">
+                <div class="editable-field" contenteditable="true">Issuing Organization</div>
+                <div class="editable-field" contenteditable="true">Month Year - Month Year (or No Expiry)</div>
+            </div>
+            <div class="editable-field" contenteditable="true">Credential ID: XXXX-XXXX</div>
+            <div class="item-actions">
+                <button class="delete-button">Delete</button>
+            </div>
+        `;
+        
+        const sectionHeader = certificationsSection.querySelector('.section-header');
+        certificationsSection.insertBefore(newCertification, sectionHeader.nextSibling);
         addDeleteListeners();
     });
     
@@ -123,28 +149,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize event listeners for delete buttons
     function addDeleteListeners() {
         document.querySelectorAll('.delete-button').forEach(button => {
-            button.addEventListener('click', function() {
-                this.closest('.education-item, .experience-item, .project-item').remove();
-            });
+            button.removeEventListener('click', deleteItem); // Remove any existing listener to prevent duplicates
+            button.addEventListener('click', deleteItem);
         });
+    }
+    
+    // Delete item function to be used as event handler
+    function deleteItem() {
+        this.closest('.education-item, .experience-item, .project-item, .certification-item').remove();
     }
     
     // Initialize event listeners for remove skill buttons
     function addRemoveSkillListeners() {
         document.querySelectorAll('.remove-skill').forEach(button => {
-            button.addEventListener('click', function() {
-                this.closest('.skill-tag').remove();
-            });
+            button.removeEventListener('click', removeSkill); // Remove any existing listener to prevent duplicates
+            button.addEventListener('click', removeSkill);
         });
+    }
+    
+    // Remove skill function to be used as event handler
+    function removeSkill() {
+        this.closest('.skill-tag').remove();
     }
     
     // Initialize event listeners for remove achievement buttons
     function addRemoveAchievementListeners() {
         document.querySelectorAll('.remove-achievement').forEach(button => {
-            button.addEventListener('click', function() {
-                this.closest('li').remove();
-            });
+            button.removeEventListener('click', removeAchievement); // Remove any existing listener to prevent duplicates
+            button.addEventListener('click', removeAchievement);
         });
+    }
+    
+    // Remove achievement function to be used as event handler
+    function removeAchievement() {
+        this.closest('li').remove();
     }
     
     // Function to save resume data
@@ -164,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
             education: [],
             experience: [],
             projects: [],
+            certifications: [], // Added certifications array
             skills: [],
             achievements: []
         };
@@ -201,6 +240,17 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
+        // Collect certification items
+        document.querySelectorAll('.certification-item').forEach(item => {
+            const certFields = item.querySelectorAll('.editable-field');
+            resumeData.certifications.push({
+                name: certFields[0].textContent,
+                issuer: certFields[1].textContent,
+                validity: certFields[2].textContent,
+                credentialId: certFields[3].textContent
+            });
+        });
+        
         // Collect skills
         document.querySelectorAll('.skill-tag span').forEach(skill => {
             resumeData.skills.push(skill.textContent);
@@ -212,7 +262,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Convert to JSON and save
-        const resumeJSON = JSON.stringify(resumeData);
+        const resumeJSON = JSON.stringify(resumeData, null, 2);
         
         // In a real application, you would send this to a server
         console.log("Resume saved:", resumeJSON);
@@ -230,8 +280,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (savedData) {
             try {
                 const resumeData = JSON.parse(savedData);
-                // Implement loading logic here if needed
                 console.log("Found saved resume data:", resumeData);
+                
+                // You can implement logic to populate the form with saved data here
             } catch (e) {
                 console.error("Error loading saved resume:", e);
             }

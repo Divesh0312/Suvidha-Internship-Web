@@ -231,6 +231,8 @@ header h1 {
     margin-top: 30px;
 }
 
+
+
 .save-button {
     background-color: #FFD700;
     border: none;
@@ -252,3 +254,47 @@ footer {
     color: #666;
     border-top: 1px solid #FFD700;
 }
+
+
+.certification-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #f0f0f0;
+    position: relative;
+}
+
+.certification-item:hover {
+    background-color: #FFFDF0;
+}
+
+.certification-item div:first-child {
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.certification-meta {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.certification-item .credential-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 30px;
+    height: 30px;
+    background-color: #FFEA82;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #CC9900;
+    font-size: 16px;
+    font-weight: bold;
+}
+

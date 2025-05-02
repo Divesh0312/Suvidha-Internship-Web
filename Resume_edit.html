@@ -1,7 +1,7 @@
 <!-- Kalpak Kulkarni -->
 
 <!-- Resume _Portal -->
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -173,28 +173,38 @@
                 </div>
             </div>
             
-            <div class="section" id="achievements-section">
+            
+            <div class="section" id="certifications-section">
                 <div class="section-header">
-                    <h3>Achievements</h3>
-                    <button class="add-button" id="add-achievement">+ Add Achievement</button>
+                    <h3>Achievements  & Certifications</h3>
+                    <button class="add-button" id="add-certification">+ Add Certification</button>
                 </div>
                 
-                <ul class="achievements-list">
-                    <li>
-                        <div class="editable-field" contenteditable="true">Winner of National Coding Competition 2023</div>
-                        <button class="remove-achievement">×</button>
-                    </li>
-                    <li>
-                        <div class="editable-field" contenteditable="true">3rd Prize in College Hackathon 2022</div>
-                        <button class="remove-achievement">×</button>
-                    </li>
-                    <li>
-                        <div class="editable-field" contenteditable="true">5-star rating on HackerRank in Problem Solving</div>
-                        <button class="remove-achievement">×</button>
-                    </li>
-                </ul>
+                <div class="certification-item">
+                    <div class="editable-field" contenteditable="true">AWS Certified Solutions Architect</div>
+                    <div class="certification-meta">
+                        <div class="editable-field" contenteditable="true">Amazon Web Services</div>
+                        <div class="editable-field" contenteditable="true">May 2023 - May 2026</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">Credential ID: AWS-1234-5678</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
+                
+                <div class="certification-item">
+                    <div class="editable-field" contenteditable="true">Oracle Certified Java Professional</div>
+                    <div class="certification-meta">
+                        <div class="editable-field" contenteditable="true">Oracle</div>
+                        <div class="editable-field" contenteditable="true">January 2023</div>
+                    </div>
+                    <div class="editable-field" contenteditable="true">Credential ID: OCP-9876-5432</div>
+                    <div class="item-actions">
+                        <button class="delete-button">Delete</button>
+                    </div>
+                </div>
             </div>
-            
+
             <div class="save-section">
                 <button id="save-resume" class="save-button">Upload Resume</button>
             </div>
@@ -208,3 +218,5 @@
     <script src="Resume_edit.js"></script>
 </body>
 </html>
+
+
