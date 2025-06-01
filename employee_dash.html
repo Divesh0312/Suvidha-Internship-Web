@@ -5,55 +5,171 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Employee Dashboard - Suvidha Foundation</title>
   <link rel="stylesheet" href="employee_dash.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    <div class="brand">
-      <h1>Employee Dashboard</h1>
-    </div>
-    <button class="logout-btn">Logout</button>
-  </header>
-
-  <aside class="sidebar">
-    <ul>
-      <li class="active">Dashboard</li>
-      <li>Post Internship</li>
-      <li>Applications</li>
-      <li>Messages</li>
-    </ul>
-  </aside>
-
-  <main>
-    <section class="stats">
-      <div class="card"><h3>Total Students</h3><p>120</p></div>
-      <div class="card"><h3>Internships Posted</h3><p>15</p></div>
-      <div class="card"><h3>Applications</h3><p>89</p></div>
-      <div class="card"><h3>Messages</h3><p>12</p></div>
-    </section>
-
-    <section class="students">
-      <div class="section-header">
-        <h2>Student Applications</h2>
-        <button class="post-btn">+ Post Internship</button>
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo-section">
+        Suvidha Foundation
       </div>
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active">
+          <svg class="nav-icon" viewBox="0 0 24 24">
+            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
+          </svg>
+          Dashboard
+        </a>
+        <a href="#" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+          </svg>
+          Post Internship
+        </a>
+        <a href="#" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24">
+            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+          </svg>
+          Applications
+        </a>
+        <a href="#" class="nav-item">
+          <svg class="nav-icon" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          Messages
+        </a>
+       
+      </nav>
+    </aside>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Branch</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Sneha Brahmane</td><td>sneha@example.com</td><td>Computer Engineering</td><td>Shortlisted</td></tr>
-          <tr><td>Shravani Borji</td><td>shravani@example.com</td><td>IT</td><td>Applied</td></tr>
-          <tr><td>Tanvi Kharade</td><td>tanvi@example.com</td><td>EXTC</td><td>Hired</td></tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <h1>Dashboard Overview</h1>
+        <div class="user-profile">
+          <div class="profile-avatar">SF</div>
+          <button class="logout-btn">Logout</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-title">Total Students</div>
+            </div>
+            <div class="stat-value">120</div>
+            <div class="stat-change">+12% from last month</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-title">Internships Posted</div>
+            </div>
+            <div class="stat-value">15</div>
+            <div class="stat-change">+3 this week</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-title">Applications</div>
+            </div>
+            <div class="stat-value">89</div>
+            <div class="stat-change">+24% active</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-header">
+              <div class="stat-title">Messages</div>
+            </div>
+            <div class="stat-value">12</div>
+            <div class="stat-change">3 unread</div>
+          </div>
+        </div>
+
+        <!-- Student Applications Table -->
+        <div class="main-section">
+          <div class="section-header">
+            <h2 class="section-title">Student Applications</h2>
+            <button class="primary-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+              </svg>
+              Post Internship
+            </button>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Branch</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <div style="width: 32px; height: 32px; background: #ffc107; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 14px;">SB</div>
+                      <strong>Sneha Brahmane</strong>
+                    </div>
+                  </td>
+                  <td>sneha@example.com</td>
+                  <td>Computer Engineering</td>
+                  <td><span class="status-badge status-shortlisted">Shortlisted</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <div style="width: 32px; height: 32px; background: #ffc107; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 14px;">SB</div>
+                      <strong>Shravani Borji</strong>
+                    </div>
+                  </td>
+                  <td>shravani@example.com</td>
+                  <td>IT</td>
+                  <td><span class="status-badge status-applied">Applied</span></td>
+                </tr>
+                <tr>
+                  <td>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                      <div style="width: 32px; height: 32px; background: #ffc107; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 14px;">TK</div>
+                      <strong>Tanvi Kharade</strong>
+                    </div>
+                  </td>
+                  <td>tanvi@example.com</td>
+                  <td>EXTC</td>
+                  <td><span class="status-badge status-hired">Hired</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Simple interactivity
+    document.querySelectorAll('.nav-item').forEach(item => {
+      item.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // Logout functionality
+    document.querySelector('.logout-btn').addEventListener('click', function() {
+      if (confirm('Are you sure you want to logout?')) {
+        alert('Logged out successfully!');
+      }
+    });
+
+    // Post internship button
+    document.querySelector('.primary-btn').addEventListener('click', function() {
+      alert('Post New Internship feature coming soon!');
+    });
+  </script>
 </body>
 </html>
