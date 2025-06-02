@@ -1,48 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Internship Portal Login</title>
-  <link rel="stylesheet" href="style1.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Suvidha Foundation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #fff9e6 0%, #ffffff 50%, #fff4d6 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .login-container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .login-header {
+      background: linear-gradient(135deg, #ffc107 0%, #ffcd38 100%);
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: rotate 15s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .login-header h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-header p {
+      font-size: 1.3rem;
+      color: #333;
+      opacity: 0.8;
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .login-content {
+      flex: 1;
+      padding: 60px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 40px;
+      padding-left: 20px;
+      border-left: 4px solid #ffc107;
+      position: relative;
+    }
+
+    .login-form {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 50px;
+      box-shadow: 0 25px 70px rgba(255, 193, 7, 0.15);
+      border: 1px solid rgba(255, 193, 7, 0.2);
+      margin-bottom: 40px;
+    }
+
+    .success-message,
+    .error-message {
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      font-weight: 500;
+      text-align: center;
+      display: none;
+      font-size: 1.1rem;
+    }
+
+    .success-message {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .error-message {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .user-type-section {
+      margin-bottom: 50px;
+    }
+
+    .user-type-label {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 25px;
+      display: block;
+    }
+
+    .user-type-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+    }
+
+    .user-type-btn {
+      padding: 20px 25px;
+      border: 2px solid #e9ecef;
+      border-radius: 15px;
+      background: #f8f9fa;
+      color: #333;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .user-type-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(255, 193, 7, 0.25);
+    }
+
+    .user-type-btn.active {
+      background: linear-gradient(135deg, #ffc107, #ffcd38);
+      border-color: #ffc107;
+      color: #000;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(255, 193, 7, 0.4);
+    }
+
+    .user-type-btn.active::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-bottom: 35px;
+    }
+
+    .form-group {
+      position: relative;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 18px 20px;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      background: #ffffff;
+      color: #333;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group input[type="password"]:focus {
+      outline: none;
+      border-color: #ffc107;
+      box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: #666;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
+
+    .toggle-password:hover {
+      color: #ffc107;
+    }
+
+    .remember-section {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 40px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 15px;
+      border: 1px solid #e9ecef;
+    }
+
+    .remember-section input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: #ffc107;
+    }
+
+    .remember-section label {
+      font-size: 1.1rem;
+      color: #333;
+      cursor: pointer;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .login-btn {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
+      background: linear-gradient(135deg, #ffc107 0%, #ffcd38 100%);
+      border: none;
+      border-radius: 15px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #000;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .login-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 45px rgba(255, 193, 7, 0.4);
+    }
+
+    .login-btn:active {
+      transform: translateY(0);
+    }
+
+    .login-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .login-btn:hover::before {
+      left: 100%;
+    }
+
+    .login-btn.success-glow {
+      animation: success-glow 0.6s ease;
+    }
+
+    @keyframes success-glow {
+      0% { box-shadow: 0 15px 45px rgba(255, 193, 7, 0.4); }
+      50% { box-shadow: 0 15px 45px rgba(40, 167, 69, 0.6), 0 0 40px rgba(40, 167, 69, 0.5); }
+      100% { box-shadow: 0 15px 45px rgba(255, 193, 7, 0.4); }
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 2px solid #e9ecef;
+    }
+
+    .register-link p {
+      font-size: 1.1rem;
+      color: #666;
+      margin: 0;
+    }
+
+    .register-link a {
+      color: #ffc107;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .register-link a:hover {
+      color: #e6ac00;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .login-header {
+        padding: 40px 20px;
+      }
+      
+      .login-header h1 {
+        font-size: 2.5rem;
+      }
+      
+      .login-header p {
+        font-size: 1.1rem;
+      }
+      
+      .login-content {
+        padding: 40px 20px;
+      }
+      
+      .login-form {
+        padding: 30px 20px;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .user-type-buttons {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .user-type-btn {
+        padding: 16px 20px;
+        font-size: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-header h1 {
+        font-size: 2rem;
+      }
+      
+      .login-header p {
+        font-size: 1rem;
+      }
+      
+      .login-content {
+        padding: 30px 15px;
+      }
+      
+      .login-form {
+        padding: 25px 15px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- Decorative Blobs -->
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
-
-  <!-- Login Container -->
   <div class="login-container">
-    <h1>Welcome to Suvidha</h1>
-    <div class="separator"></div> <!-- Yellow underline -->
-
-    <!-- User Type Toggle -->
-    <div class="user-toggle">
-      <label>
-        <input type="radio" name="userType" value="student" checked />
-        Student
-      </label>
-      <label>
-        <input type="radio" name="userType" value="employee" />
-        Employee
-      </label>
-      <label>
-        <input type="radio" name="userType" value="tpo" />
-        TPO
-      </label>
+    <div class="login-header">
+      <h1>Welcome Back</h1>
+      <p>Sign in to access your portal and manage your account</p>
     </div>
+    
+    <div class="login-content">
+      <div class="section-title">Login Information</div>
+      
+      <div class="login-form">
+        <div id="success-message" class="success-message"></div>
+        <div id="error-message" class="error-message"></div>
+        
+        <form id="login-form">
+          <div class="user-type-section">
+            <label class="user-type-label">Select User Type</label>
+            <div class="user-type-buttons">
+              <button type="button" class="user-type-btn" data-type="student" id="btn-student">
+                Student
+              </button>
+              <button type="button" class="user-type-btn" data-type="tpo" id="btn-tpo">
+                TPO
+              </button>
+              <button type="button" class="user-type-btn" data-type="employee" id="btn-employee">
+                Employee
+              </button>
+            </div>
+          </div>
 
-    <!-- Login Form -->
-    <form>
-      <input type="email" placeholder="Email" required />
-      <input type="password" placeholder="Password" required />
-      <button type="submit">Login</button>
-    </form>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="username">Username *</label>
+              <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
 
-    <p class="note">Don't have an account? <a href="#">Sign up</a></p>
+            <div class="form-group">
+              <label for="password">Password *</label>
+              <div class="input-wrapper">
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="remember-section">
+            <input type="checkbox" id="remember-me" name="remember">
+            <label for="remember-me">Remember me for next time</label>
+          </div>
+
+          <button type="submit" class="login-btn">
+            Sign In to Portal
+          </button>
+        </form>
+
+        <div class="register-link">
+          <p>Don't have an account? <a href="register.html">Create Account</a></p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- JS -->
   <script src="login.js"></script>
 </body>
 </html>
