@@ -4,57 +4,42 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Employee Dashboard - Suvidha Foundation</title>
-  <link rel="stylesheet" href="employee_dash.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="employee_dash.css">
+    
 </head>
 <body>
   <div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
       <div class="logo-section">
         Suvidha Foundation
+        <button class="close-sidebar" id="closeSidebar">×</button>
       </div>
       <nav class="nav-menu">
-        <a href="#" class="nav-item active">
-          <svg class="nav-icon" viewBox="0 0 24 24">
-            <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/>
-          </svg>
-          Dashboard
-        </a>
-        <a href="#" class="nav-item">
-          <svg class="nav-icon" viewBox="0 0 24 24">
-            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-          </svg>
-          Post Internship
-        </a>
-        <a href="#" class="nav-item">
-          <svg class="nav-icon" viewBox="0 0 24 24">
-            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
-          </svg>
-          Applications
-        </a>
-        <a href="#" class="nav-item">
-          <svg class="nav-icon" viewBox="0 0 24 24">
-            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-          </svg>
-          Messages
-        </a>
-       
+        <a href="#" class="nav-item active"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>Dashboard</a>
+        <a href="#" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>Post Internship</a>
+        <a href="#" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>Applications</a>
+        <a href="#" class="nav-item"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Messages</a>
       </nav>
     </aside>
-
-    <!-- Main Content -->
     <main class="main-content">
       <header class="header">
-        <h1>Dashboard Overview</h1>
+        <div class="header-left">
+          <button class="menu-toggle" id="menuToggle">☰</button>
+          <button class="back-button" onclick="goBack()">
+            <svg class="back-icon" viewBox="0 0 24 24">
+              <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+            </svg>
+           
+          </button>
+          <h1>Dashboard Overview</h1>
+        </div>
         <div class="user-profile">
           <div class="profile-avatar">SF</div>
           <button class="logout-btn">Logout</button>
         </div>
       </header>
-
       <div class="content">
-        <!-- Stats Cards -->
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-header">
@@ -85,8 +70,7 @@
             <div class="stat-change">3 unread</div>
           </div>
         </div>
-
-        <!-- Student Applications Table -->
+      
         <div class="main-section">
           <div class="section-header">
             <h2 class="section-title">Student Applications</h2>
@@ -109,34 +93,19 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <div style="width: 32px; height: 32px; background: #ffc107; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 14px;">SB</div>
-                      <strong>Sneha Brahmane</strong>
-                    </div>
-                  </td>
+                  <td>Sneha Brahmane</td>
                   <td>sneha@example.com</td>
                   <td>Computer Engineering</td>
                   <td><span class="status-badge status-shortlisted">Shortlisted</span></td>
                 </tr>
                 <tr>
-                  <td>
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <div style="width: 32px; height: 32px; background: #ffc107; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 14px;">SB</div>
-                      <strong>Shravani Borji</strong>
-                    </div>
-                  </td>
+                  <td>Shravani Borji</td>
                   <td>shravani@example.com</td>
                   <td>IT</td>
                   <td><span class="status-badge status-applied">Applied</span></td>
                 </tr>
                 <tr>
-                  <td>
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                      <div style="width: 32px; height: 32px; background: #ffc107; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 14px;">TK</div>
-                      <strong>Tanvi Kharade</strong>
-                    </div>
-                  </td>
+                  <td>Tanvi Kharade</td>
                   <td>tanvi@example.com</td>
                   <td>EXTC</td>
                   <td><span class="status-badge status-hired">Hired</span></td>
@@ -150,25 +119,32 @@
   </div>
 
   <script>
-    // Simple interactivity
-    document.querySelectorAll('.nav-item').forEach(item => {
-      item.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
-        this.classList.add('active');
-      });
+    document.getElementById('menuToggle').addEventListener('click', function () {
+      document.getElementById('sidebar').classList.add('open');
+    });
+    
+    document.getElementById('closeSidebar').addEventListener('click', function () {
+      document.getElementById('sidebar').classList.remove('open');
     });
 
-    // Logout functionality
-    document.querySelector('.logout-btn').addEventListener('click', function() {
-      if (confirm('Are you sure you want to logout?')) {
-        alert('Logged out successfully!');
+    function goBack() {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        // Fallback if no history
+        alert('No previous page to go back to');
       }
-    });
+    }
 
-    // Post internship button
-    document.querySelector('.primary-btn').addEventListener('click', function() {
-      alert('Post New Internship feature coming soon!');
+    // Add click animation to stat cards
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach(card => {
+      card.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+      });
     });
   </script>
 </body>
